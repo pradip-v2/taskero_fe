@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
+import { createFileRoute } from "@tanstack/react-router";
+import logo from "../logo.svg";
+import { Button } from "@mantine/core";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   component: App,
-})
+});
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           className="h-[40vmin] pointer-events-none animate-[spin_20s_linear_infinite]"
           alt="logo"
         />
+        <Button>Testing</Button>
         <p>
           Edit <code>src/routes/index.tsx</code> and save to reload.
         </p>
@@ -35,5 +37,5 @@ function App() {
         </a>
       </header>
     </div>
-  )
+  );
 }

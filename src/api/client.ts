@@ -3,7 +3,7 @@ import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import type { AuthLoginCreateMutationResponse as LoginResponse } from "./types";
 
 const BASE_PATH = import.meta.env.VITE_BASE_URL;
-const LOCAL_STORAGE_USER_KEY = "taskero_user";
+export const LOCAL_STORAGE_USER_KEY = "taskero_user";
 
 export type RequestConfig<TVariables = unknown> = {
   method:

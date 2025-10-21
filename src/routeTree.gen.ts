@@ -8,19 +8,16 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TestRouteImport } from './routes/test'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppLayoutRouteImport } from './routes/app/_layout'
 import { Route as AppLayoutTwoRouteImport } from './routes/app/_layout/two'
 import { Route as AppLayoutOneRouteImport } from './routes/app/_layout/one'
 
-const AppRouteImport = createFileRoute('/app')()
-
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
+const TestRoute = TestRouteImport.update({
+  id: '/test',
+  path: '/test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -45,12 +42,14 @@ const AppLayoutOneRoute = AppLayoutOneRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/test': typeof TestRoute
   '/app': typeof AppLayoutRouteWithChildren
   '/app/one': typeof AppLayoutOneRoute
   '/app/two': typeof AppLayoutTwoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/test': typeof TestRoute
   '/app': typeof AppLayoutRouteWithChildren
   '/app/one': typeof AppLayoutOneRoute
   '/app/two': typeof AppLayoutTwoRoute
@@ -58,20 +57,20 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app': typeof AppRouteWithChildren
+  '/test': typeof TestRoute
   '/app/_layout': typeof AppLayoutRouteWithChildren
   '/app/_layout/one': typeof AppLayoutOneRoute
   '/app/_layout/two': typeof AppLayoutTwoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/app/one' | '/app/two'
+  fullPaths: '/' | '/test' | '/app' | '/app/one' | '/app/two'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app' | '/app/one' | '/app/two'
+  to: '/' | '/test' | '/app' | '/app/one' | '/app/two'
   id:
     | '__root__'
     | '/'
-    | '/app'
+    | '/test'
     | '/app/_layout'
     | '/app/_layout/one'
     | '/app/_layout/two'
@@ -79,16 +78,16 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppRoute: typeof AppRouteWithChildren
+  TestRoute: typeof TestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
+    '/test': {
+      id: '/test'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -100,7 +99,7 @@ declare module '@tanstack/react-router' {
     }
     '/app/_layout': {
       id: '/app/_layout'
-      path: '/app'
+      path: ''
       fullPath: '/app'
       preLoaderRoute: typeof AppLayoutRouteImport
       parentRoute: typeof AppRoute
@@ -122,33 +121,9 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AppLayoutRouteChildren {
-  AppLayoutOneRoute: typeof AppLayoutOneRoute
-  AppLayoutTwoRoute: typeof AppLayoutTwoRoute
-}
-
-const AppLayoutRouteChildren: AppLayoutRouteChildren = {
-  AppLayoutOneRoute: AppLayoutOneRoute,
-  AppLayoutTwoRoute: AppLayoutTwoRoute,
-}
-
-const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
-  AppLayoutRouteChildren,
-)
-
-interface AppRouteChildren {
-  AppLayoutRoute: typeof AppLayoutRouteWithChildren
-}
-
-const AppRouteChildren: AppRouteChildren = {
-  AppLayoutRoute: AppLayoutRouteWithChildren,
-}
-
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppRoute: AppRouteWithChildren,
+  TestRoute: TestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

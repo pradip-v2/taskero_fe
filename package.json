@@ -6,9 +6,15 @@
     "dev": "vite --port 3000",
     "build": "vite build && tsc",
     "serve": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate": "kubb generate"
   },
   "dependencies": {
+    "@kubb/cli": "^3.1.0",
+    "@kubb/core": "^3.1.0",
+    "@kubb/plugin-oas": "^3.1.0",
+    "@kubb/plugin-react-query": "^3.1.0",
+    "@kubb/plugin-ts": "^3.1.0",
     "@mantine/core": "^8.3.3",
     "@mantine/dates": "^8.3.3",
     "@mantine/dropzone": "^8.3.3",
@@ -23,6 +29,7 @@
     "@tanstack/react-router": "^1.132.0",
     "@tanstack/react-router-devtools": "^1.132.0",
     "@tanstack/router-plugin": "^1.132.0",
+    "axios": "^1.12.2",
     "dayjs": "^1.11.18",
     "lucide-react": "^0.544.0",
     "react": "^19.0.0",

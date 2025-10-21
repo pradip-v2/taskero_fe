@@ -1,0 +1,12 @@
+export type { TasksCreateMutationKey } from "./useTasksCreate.ts";
+export type { TasksDestroyMutationKey } from "./useTasksDestroy.ts";
+export type { TasksPartialUpdateMutationKey } from "./useTasksPartialUpdate.ts";
+export type { TasksRetrieveQueryKey } from "./useTasksRetrieve.ts";
+export type { TasksRetrieveSuspenseQueryKey } from "./useTasksRetrieveSuspense.ts";
+export type { TasksUpdateMutationKey } from "./useTasksUpdate.ts";
+export { tasksCreateMutationKey, tasksCreate, useTasksCreate } from "./useTasksCreate.ts";
+export { tasksDestroyMutationKey, tasksDestroy, useTasksDestroy } from "./useTasksDestroy.ts";
+export { tasksPartialUpdateMutationKey, tasksPartialUpdate, useTasksPartialUpdate } from "./useTasksPartialUpdate.ts";
+export { tasksRetrieveQueryKey, tasksRetrieve, tasksRetrieveQueryOptions, useTasksRetrieve } from "./useTasksRetrieve.ts";
+export { tasksRetrieveSuspenseQueryKey, tasksRetrieveSuspense, tasksRetrieveSuspenseQueryOptions, useTasksRetrieveSuspense } from "./useTasksRetrieveSuspense.ts";
+export { tasksUpdateMutationKey, tasksUpdate, useTasksUpdate } from "./useTasksUpdate.ts";

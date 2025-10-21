@@ -1,0 +1,1 @@
+{"type":"object","properties":{"refresh":{"type":"string","writeOnly":true}},"required":["refresh"],"x-readme-ref-name":"TokenBlacklist"}

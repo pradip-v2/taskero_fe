@@ -1,0 +1,1 @@
+{"type":"object","properties":{"project__title":{"type":"string"},"project__id":{"type":"integer"},"project__owner__name":{"type":"string"}},"required":["project__id","project__owner__name","project__title"],"x-readme-ref-name":"UserProject"}

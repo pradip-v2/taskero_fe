@@ -1,0 +1,1 @@
+{"type":"object","properties":{"detail":{"type":"string","readOnly":true}},"required":["detail"],"x-readme-ref-name":"RestAuthDetail"}

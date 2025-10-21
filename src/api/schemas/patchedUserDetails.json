@@ -1,0 +1,1 @@
+{"type":"object","description":"User model w/o password","properties":{"pk":{"type":"integer","readOnly":true,"title":"ID"},"email":{"type":"string","format":"email","readOnly":true,"title":"Email address"},"first_name":{"type":"string","readOnly":true},"last_name":{"type":"string","readOnly":true}},"x-readme-ref-name":"PatchedUserDetails"}

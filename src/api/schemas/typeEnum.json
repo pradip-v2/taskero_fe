@@ -1,0 +1,1 @@
+{"enum":["private","group"],"type":"string","description":"* `private` - Private\n* `group` - Group","x-readme-ref-name":"TypeEnum"}

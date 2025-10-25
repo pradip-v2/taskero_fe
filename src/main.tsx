@@ -1,63 +1,113 @@
-import { StrictMode } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
-
-import * as TanStackQueryProvider from "./integrations/tanstack-query/root-provider.tsx";
-
-// Import the generated route tree
 import { routeTree } from "./routeTree.gen";
-
-import reportWebVitals from "./reportWebVitals.ts";
-
-// core styles are required for all packages
+import { AuthProvider, useAuth } from "./auth";
+import {
+  Button,
+  Flex,
+  MantineProvider,
+  Modal,
+  ThemeIcon,
+  Title,
+} from "@mantine/core";
+import { theme } from "./theme";
 import "@mantine/core/styles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ResourceNotFound from "./components/shared/ResourceNotFound";
+import { AlertModalContext, type AlertType } from "./context/AlertModalProvider";
+import { useDisclosure } from "@mantine/hooks";
+import { Notifications } from "@mantine/notifications";
+import "@mantine/notifications/styles.css";
 
-// other css files are required only if
-// you are using components from the corresponding package
-import "@mantine/dates/styles.css";
-import "@mantine/dropzone/styles.css";
-import { MantineProvider } from "@mantine/core";
-import { theme } from "@/theme.ts";
-// import '@mantine/code-highlight/styles.css';
-// ...
-
-// Create a new router instance
-
-const TanStackQueryProviderContext = TanStackQueryProvider.getContext();
-const router = createRouter({
-  routeTree,
-  context: {
-    ...TanStackQueryProviderContext,
-  },
-  defaultPreload: "intent",
-  scrollRestoration: true,
-  defaultStructuralSharing: true,
-  defaultPreloadStaleTime: 0,
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });
 
-// Register the router instance for type safety
+// Set up a Router instance
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+  context: {
+    queryClient,
+    auth: undefined!, // This will be set after we wrap the app in an AuthProvider
+  },
+  defaultNotFoundComponent: () => <ResourceNotFound resourceType="Page" />,
+});
+
+// Register things for typesafety
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;
   }
 }
 
-// Render the app
-const rootElement = document.getElementById("app");
-if (rootElement && !rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
-    <StrictMode>
-      <MantineProvider theme={theme}>
-        <TanStackQueryProvider.Provider {...TanStackQueryProviderContext}>
-          <RouterProvider router={router} />
-        </TanStackQueryProvider.Provider>
-      </MantineProvider>
-    </StrictMode>
+function InnerApp() {
+  const auth = useAuth();
+  const [opened, handlers] = useDisclosure(false);
+  const [alert, setAlert] = useState<AlertType | null>(null);
+
+  function openModal(alert: AlertType) {
+    setAlert(alert);
+    setTimeout(() => {
+      handlers.open();
+    }, 0);
+  }
+
+  return (
+    <AlertModalContext.Provider value={{ open: openModal }}>
+      {opened && (
+        <Modal
+          opened={opened}
+          centered
+          onClose={function (): void {
+            handlers.close();
+          }}
+          withCloseButton={false}
+          w={338}
+          h={226}
+        >
+          <Flex
+            direction={"column"}
+            align={"center"}
+            gap={"md"}
+            w={"100%"}
+            py={"md"}
+          >
+            <ThemeIcon size={65} radius={"xl"}>
+            </ThemeIcon>
+            <Title order={5}>{alert?.message}</Title>
+            <Button onClick={handlers.close} w={274} h={41}>
+              Close
+            </Button>
+          </Flex>
+        </Modal>
+      )}
+      <RouterProvider router={router} context={{ auth }} />
+    </AlertModalContext.Provider>
   );
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <MantineProvider theme={theme}>
+          <Notifications />
+            <InnerApp />
+        </MantineProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  );
+}
+
+const rootElement = document.getElementById("app")!;
+
+if (!rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}

@@ -43,6 +43,7 @@ export type { ProjectsRetrieveSuspenseQueryKey } from "./projectsHooks/useProjec
 export type { ProjectsTasksListQueryKey } from "./projectsHooks/useProjectsTasksList.ts";
 export type { ProjectsTasksListSuspenseQueryKey } from "./projectsHooks/useProjectsTasksListSuspense.ts";
 export type { ProjectsUpdateMutationKey } from "./projectsHooks/useProjectsUpdate.ts";
+export type { S3PresignedUrlCreateMutationKey } from "./s3Hooks/useS3PresignedUrlCreate.ts";
 export type { SchemaRetrieveQueryKey } from "./schemaHooks/useSchemaRetrieve.ts";
 export type { SchemaRetrieveSuspenseQueryKey } from "./schemaHooks/useSchemaRetrieveSuspense.ts";
 export type { TasksCreateMutationKey } from "./tasksHooks/useTasksCreate.ts";
@@ -112,6 +113,7 @@ export { projectsRetrieveSuspenseQueryKey, projectsRetrieveSuspense, projectsRet
 export { projectsTasksListQueryKey, projectsTasksList, projectsTasksListQueryOptions, useProjectsTasksList } from "./projectsHooks/useProjectsTasksList.ts";
 export { projectsTasksListSuspenseQueryKey, projectsTasksListSuspense, projectsTasksListSuspenseQueryOptions, useProjectsTasksListSuspense } from "./projectsHooks/useProjectsTasksListSuspense.ts";
 export { projectsUpdateMutationKey, projectsUpdate, useProjectsUpdate } from "./projectsHooks/useProjectsUpdate.ts";
+export { s3PresignedUrlCreateMutationKey, s3PresignedUrlCreate, useS3PresignedUrlCreate } from "./s3Hooks/useS3PresignedUrlCreate.ts";
 export { schemaRetrieveQueryKey, schemaRetrieve, schemaRetrieveQueryOptions, useSchemaRetrieve } from "./schemaHooks/useSchemaRetrieve.ts";
 export { schemaRetrieveSuspenseQueryKey, schemaRetrieveSuspense, schemaRetrieveSuspenseQueryOptions, useSchemaRetrieveSuspense } from "./schemaHooks/useSchemaRetrieveSuspense.ts";
 export { tasksCreateMutationKey, tasksCreate, useTasksCreate } from "./tasksHooks/useTasksCreate.ts";

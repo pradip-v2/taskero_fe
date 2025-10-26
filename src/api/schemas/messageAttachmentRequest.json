@@ -1,0 +1,1 @@
+{"type":"object","properties":{"file_url":{"type":"string"},"key":{"type":"string"}},"required":["file_url","key"],"x-readme-ref-name":"MessageAttachmentRequest"}

@@ -1,0 +1,1 @@
+{"type":"object","properties":{"id":{"type":"integer","readOnly":true},"file_url":{"type":"string","format":"uri","maxLength":200},"key":{"type":"string","maxLength":512},"message":{"type":"integer"}},"required":["file_url","id","key","message"],"x-readme-ref-name":"MessageAttachment"}

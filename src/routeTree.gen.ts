@@ -8,6 +8,8 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestRouteImport } from './routes/test'
 import { Route as IndexRouteImport } from './routes/index'
@@ -15,6 +17,13 @@ import { Route as AppLayoutRouteImport } from './routes/app/_layout'
 import { Route as AppLayoutTwoRouteImport } from './routes/app/_layout/two'
 import { Route as AppLayoutOneRouteImport } from './routes/app/_layout/one'
 
+const AppRouteImport = createFileRoute('/app')()
+
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestRoute = TestRouteImport.update({
   id: '/test',
   path: '/test',
@@ -58,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/test': typeof TestRoute
+  '/app': typeof AppRouteWithChildren
   '/app/_layout': typeof AppLayoutRouteWithChildren
   '/app/_layout/one': typeof AppLayoutOneRoute
   '/app/_layout/two': typeof AppLayoutTwoRoute
@@ -71,6 +81,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/test'
+    | '/app'
     | '/app/_layout'
     | '/app/_layout/one'
     | '/app/_layout/two'
@@ -79,10 +90,18 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TestRoute: typeof TestRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/test': {
       id: '/test'
       path: '/test'
@@ -99,7 +118,7 @@ declare module '@tanstack/react-router' {
     }
     '/app/_layout': {
       id: '/app/_layout'
-      path: ''
+      path: '/app'
       fullPath: '/app'
       preLoaderRoute: typeof AppLayoutRouteImport
       parentRoute: typeof AppRoute
@@ -121,9 +140,34 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AppLayoutRouteChildren {
+  AppLayoutOneRoute: typeof AppLayoutOneRoute
+  AppLayoutTwoRoute: typeof AppLayoutTwoRoute
+}
+
+const AppLayoutRouteChildren: AppLayoutRouteChildren = {
+  AppLayoutOneRoute: AppLayoutOneRoute,
+  AppLayoutTwoRoute: AppLayoutTwoRoute,
+}
+
+const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
+  AppLayoutRouteChildren,
+)
+
+interface AppRouteChildren {
+  AppLayoutRoute: typeof AppLayoutRouteWithChildren
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppLayoutRoute: AppLayoutRouteWithChildren,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TestRoute: TestRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

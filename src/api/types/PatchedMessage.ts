@@ -3,6 +3,8 @@
 * Do not edit manually.
 */
 
+import type { MessageAttachment } from "./MessageAttachment.ts";
+import type { MessageAttachmentRequest } from "./MessageAttachmentRequest.ts";
 import type { UserMinDetails } from "./UserMinDetails.ts";
 import type { UserRelationShort } from "./UserRelationShort.ts";
 
@@ -17,6 +19,14 @@ export type PatchedMessage = {
     readonly created_by_data?: UserMinDetails | null;
     readonly updated_by_data?: UserMinDetails | null;
     readonly sender_data?: UserRelationShort;
+    /**
+     * @type array | undefined
+    */
+    attachments?: MessageAttachmentRequest[];
+    /**
+     * @type array | undefined
+    */
+    readonly attachments_data?: MessageAttachment[];
     /**
      * @type string | undefined, date-time
     */

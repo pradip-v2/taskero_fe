@@ -13,9 +13,9 @@ export type MessagesUpdatePathParams = {
     id: number;
 };
 
-export type MessagesUpdate200 = Message;
+export type MessagesUpdate200 = Omit<NonNullable<Message>, "attachments">;
 
-export type MessagesUpdateMutationRequest = Omit<NonNullable<Message>, "id" | "created_by_data" | "updated_by_data" | "sender_data" | "created_at" | "updated_at">;
+export type MessagesUpdateMutationRequest = Omit<NonNullable<Message>, "id" | "created_by_data" | "updated_by_data" | "sender_data" | "attachments_data" | "created_at" | "updated_at">;
 
 export type MessagesUpdateMutationResponse = MessagesUpdate200;
 

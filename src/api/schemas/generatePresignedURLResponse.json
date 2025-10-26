@@ -1,0 +1,1 @@
+{"type":"object","properties":{"upload_url":{"type":"string"},"file_url":{"type":"string"},"key":{"type":"string"}},"required":["file_url","key","upload_url"],"x-readme-ref-name":"GeneratePresignedURLResponse"}

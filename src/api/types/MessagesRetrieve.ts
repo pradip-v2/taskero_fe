@@ -13,7 +13,7 @@ export type MessagesRetrievePathParams = {
     id: number;
 };
 
-export type MessagesRetrieve200 = Message;
+export type MessagesRetrieve200 = Omit<NonNullable<Message>, "attachments">;
 
 export type MessagesRetrieveQueryResponse = MessagesRetrieve200;
 

@@ -43,6 +43,7 @@ export type { ProjectsRetrieveSuspenseQueryKey } from "./hooks/projectsHooks/use
 export type { ProjectsTasksListQueryKey } from "./hooks/projectsHooks/useProjectsTasksList.ts";
 export type { ProjectsTasksListSuspenseQueryKey } from "./hooks/projectsHooks/useProjectsTasksListSuspense.ts";
 export type { ProjectsUpdateMutationKey } from "./hooks/projectsHooks/useProjectsUpdate.ts";
+export type { S3PresignedUrlCreateMutationKey } from "./hooks/s3Hooks/useS3PresignedUrlCreate.ts";
 export type { SchemaRetrieveQueryKey } from "./hooks/schemaHooks/useSchemaRetrieve.ts";
 export type { SchemaRetrieveSuspenseQueryKey } from "./hooks/schemaHooks/useSchemaRetrieveSuspense.ts";
 export type { TasksCreateMutationKey } from "./hooks/tasksHooks/useTasksCreate.ts";
@@ -85,9 +86,13 @@ export type { ConversationsPartialUpdatePathParams, ConversationsPartialUpdate20
 export type { ConversationsRetrievePathParams, ConversationsRetrieve200, ConversationsRetrieveQueryResponse, ConversationsRetrieveQuery } from "./types/ConversationsRetrieve.ts";
 export type { ConversationsUpdatePathParams, ConversationsUpdate200, ConversationsUpdateMutationRequest, ConversationsUpdateMutationResponse, ConversationsUpdateMutation } from "./types/ConversationsUpdate.ts";
 export type { CurrentUserDetail } from "./types/CurrentUserDetail.ts";
+export type { GeneratePresignedURLRequest } from "./types/GeneratePresignedURLRequest.ts";
+export type { GeneratePresignedURLResponse } from "./types/GeneratePresignedURLResponse.ts";
 export type { JWT } from "./types/JWT.ts";
 export type { Login } from "./types/Login.ts";
 export type { Message } from "./types/Message.ts";
+export type { MessageAttachment } from "./types/MessageAttachment.ts";
+export type { MessageAttachmentRequest } from "./types/MessageAttachmentRequest.ts";
 export type { MessagesCreate201, MessagesCreateMutationRequest, MessagesCreateMutationResponse, MessagesCreateMutation } from "./types/MessagesCreate.ts";
 export type { MessagesDestroyPathParams, MessagesDestroy204, MessagesDestroyMutationResponse, MessagesDestroyMutation } from "./types/MessagesDestroy.ts";
 export type { MessagesListQueryParams, MessagesList200, MessagesListQueryResponse, MessagesListQuery } from "./types/MessagesList.ts";
@@ -130,6 +135,7 @@ export type { ProjectsUpdatePathParams, ProjectsUpdate200, ProjectsUpdateMutatio
 export type { ProjectWiseMember } from "./types/ProjectWiseMember.ts";
 export type { Response } from "./types/Response.ts";
 export type { RestAuthDetail } from "./types/RestAuthDetail.ts";
+export type { S3PresignedUrlCreate200, S3PresignedUrlCreate400, S3PresignedUrlCreateMutationRequest, S3PresignedUrlCreateMutationResponse, S3PresignedUrlCreateMutation } from "./types/S3PresignedUrlCreate.ts";
 export type { SchemaRetrieveQueryParamsFormatEnum, SchemaRetrieveQueryParamsLangEnum, SchemaRetrieveQueryParams, SchemaRetrieve200, SchemaRetrieveQueryResponse, SchemaRetrieveQuery } from "./types/SchemaRetrieve.ts";
 export type { Task } from "./types/Task.ts";
 export type { TasksCreate201, TasksCreateMutationRequest, TasksCreateMutationResponse, TasksCreateMutation } from "./types/TasksCreate.ts";
@@ -205,6 +211,7 @@ export { projectsRetrieveSuspenseQueryKey, projectsRetrieveSuspense, projectsRet
 export { projectsTasksListQueryKey, projectsTasksList, projectsTasksListQueryOptions, useProjectsTasksList } from "./hooks/projectsHooks/useProjectsTasksList.ts";
 export { projectsTasksListSuspenseQueryKey, projectsTasksListSuspense, projectsTasksListSuspenseQueryOptions, useProjectsTasksListSuspense } from "./hooks/projectsHooks/useProjectsTasksListSuspense.ts";
 export { projectsUpdateMutationKey, projectsUpdate, useProjectsUpdate } from "./hooks/projectsHooks/useProjectsUpdate.ts";
+export { s3PresignedUrlCreateMutationKey, s3PresignedUrlCreate, useS3PresignedUrlCreate } from "./hooks/s3Hooks/useS3PresignedUrlCreate.ts";
 export { schemaRetrieveQueryKey, schemaRetrieve, schemaRetrieveQueryOptions, useSchemaRetrieve } from "./hooks/schemaHooks/useSchemaRetrieve.ts";
 export { schemaRetrieveSuspenseQueryKey, schemaRetrieveSuspense, schemaRetrieveSuspenseQueryOptions, useSchemaRetrieveSuspense } from "./hooks/schemaHooks/useSchemaRetrieveSuspense.ts";
 export { tasksCreateMutationKey, tasksCreate, useTasksCreate } from "./hooks/tasksHooks/useTasksCreate.ts";

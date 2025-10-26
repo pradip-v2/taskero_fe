@@ -38,6 +38,13 @@ export type ResponseConfig<TData = unknown> = {
   headers?: AxiosResponse["headers"] & { "X-Tenant"?: string };
 };
 
+export type ResponseErrorConfig<TError = unknown> = {
+  data: TError;
+  status: number;
+  statusText: string;
+  headers?: AxiosResponse["headers"] & { "X-Tenant"?: string };
+};
+
 export const axiosInstance = axios.create({
   baseURL: BASE_PATH,
 });

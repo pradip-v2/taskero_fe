@@ -1,0 +1,1 @@
+{"type":"object","properties":{"filename":{"type":"string"},"content_type":{"type":"string"}},"required":["content_type","filename"],"x-readme-ref-name":"GeneratePresignedURLRequest"}

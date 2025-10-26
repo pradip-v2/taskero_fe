@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback, useState } from "react";
-import type { Message } from "@/api";
+import type { Message, MessageAttachmentRequest } from "@/api";
 
 type ServerEvent = { type: "chat.history"; messages: Message[] } | Message;
 
@@ -19,7 +19,7 @@ export function useConversationSocket({
   const [messages, setMessages] = useState<Message[]>([]);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxMTUyMDI4LCJpYXQiOjE3NjEwNjU2MjgsImp0aSI6IjUyZWRjOGYyNTYyOTQyZjViYjYyMWZjZmY4YjJjODRmIiwidXNlcl9pZCI6IjEifQ.p8f4UAyzCMOGkMdfVw2mBTHktYRdjm0gzEZz4MISDG8";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxNTA1NTU5LCJpYXQiOjE3NjE0MTkxNjAsImp0aSI6IjFhNTQ1NzRjZTU5ZTQwMjdhNTVkOTMyODQ0OWZhZGY2IiwidXNlcl9pZCI6IjEifQ.cJML-wEDdTG65yoqXiE4l4IlkWQDJpIQxheATYIa3Xo";
 
   const connect = useCallback(() => {
     const wsUrl = new URL(
@@ -53,15 +53,18 @@ export function useConversationSocket({
   useEffect(() => {
     connect();
     return () => {
-      socketRef.current?.close();
+      // socketRef.current?.close();
     };
   }, [connect]);
 
-  const sendMessage = useCallback((message: string) => {
-    if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN)
-      return;
-    socketRef.current.send(JSON.stringify({ message }));
-  }, []);
+  const sendMessage = useCallback(
+    (message: string, attachments: MessageAttachmentRequest[] = []) => {
+      if (!socketRef.current || socketRef.current.readyState !== WebSocket.OPEN)
+        return;
+      socketRef.current.send(JSON.stringify({ message, attachments }));
+    },
+    []
+  );
 
   return {
     sendMessage,

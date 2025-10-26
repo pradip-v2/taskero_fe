@@ -16,9 +16,13 @@ export type { ConversationsPartialUpdatePathParams, ConversationsPartialUpdate20
 export type { ConversationsRetrievePathParams, ConversationsRetrieve200, ConversationsRetrieveQueryResponse, ConversationsRetrieveQuery } from "./ConversationsRetrieve.ts";
 export type { ConversationsUpdatePathParams, ConversationsUpdate200, ConversationsUpdateMutationRequest, ConversationsUpdateMutationResponse, ConversationsUpdateMutation } from "./ConversationsUpdate.ts";
 export type { CurrentUserDetail } from "./CurrentUserDetail.ts";
+export type { GeneratePresignedURLRequest } from "./GeneratePresignedURLRequest.ts";
+export type { GeneratePresignedURLResponse } from "./GeneratePresignedURLResponse.ts";
 export type { JWT } from "./JWT.ts";
 export type { Login } from "./Login.ts";
 export type { Message } from "./Message.ts";
+export type { MessageAttachment } from "./MessageAttachment.ts";
+export type { MessageAttachmentRequest } from "./MessageAttachmentRequest.ts";
 export type { MessagesCreate201, MessagesCreateMutationRequest, MessagesCreateMutationResponse, MessagesCreateMutation } from "./MessagesCreate.ts";
 export type { MessagesDestroyPathParams, MessagesDestroy204, MessagesDestroyMutationResponse, MessagesDestroyMutation } from "./MessagesDestroy.ts";
 export type { MessagesListQueryParams, MessagesList200, MessagesListQueryResponse, MessagesListQuery } from "./MessagesList.ts";
@@ -61,6 +65,7 @@ export type { ProjectsUpdatePathParams, ProjectsUpdate200, ProjectsUpdateMutatio
 export type { ProjectWiseMember } from "./ProjectWiseMember.ts";
 export type { Response } from "./Response.ts";
 export type { RestAuthDetail } from "./RestAuthDetail.ts";
+export type { S3PresignedUrlCreate200, S3PresignedUrlCreate400, S3PresignedUrlCreateMutationRequest, S3PresignedUrlCreateMutationResponse, S3PresignedUrlCreateMutation } from "./S3PresignedUrlCreate.ts";
 export type { SchemaRetrieveQueryParamsFormatEnum, SchemaRetrieveQueryParamsLangEnum, SchemaRetrieveQueryParams, SchemaRetrieve200, SchemaRetrieveQueryResponse, SchemaRetrieveQuery } from "./SchemaRetrieve.ts";
 export type { Task } from "./Task.ts";
 export type { TasksCreate201, TasksCreateMutationRequest, TasksCreateMutationResponse, TasksCreateMutation } from "./TasksCreate.ts";

@@ -19,7 +19,7 @@ export function useConversationSocket({
   const [messages, setMessages] = useState<Message[]>([]);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxNTA1NTU5LCJpYXQiOjE3NjE0MTkxNjAsImp0aSI6IjFhNTQ1NzRjZTU5ZTQwMjdhNTVkOTMyODQ0OWZhZGY2IiwidXNlcl9pZCI6IjEifQ.cJML-wEDdTG65yoqXiE4l4IlkWQDJpIQxheATYIa3Xo";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxNjUwNjcxLCJpYXQiOjE3NjE1NjQyNzEsImp0aSI6IjNmYzc4Y2ZkY2NkMDQwMTE5M2JmYjBmMDNkNmFkMjhkIiwidXNlcl9pZCI6IjEifQ.OhWzfkg2Ur-jl7YFkhhjsPzo8J3zK8Uox5ObEO3E9e8";
 
   const connect = useCallback(() => {
     const wsUrl = new URL(

@@ -21,6 +21,7 @@ function RouteComponent() {
     <div>
       Hello "/test"!
       <Button
+        key={JSON.stringify(fileUploaded)}
         onClick={() => {
           sendMessage(
             "Hi at " + new Date().toString(),
@@ -33,27 +34,31 @@ function RouteComponent() {
       <Dropzone
         onDrop={async (files) => {
           const file = files[0];
-          const res = await createS3PreSignedUrl({
+          await createS3PreSignedUrl({
             data: {
               filename: file.name,
               content_type: file.type,
             },
+          }).then((res) => {
+            fetch(res.file_url, {
+              method: "PUT",
+              headers: {
+                "Content-Type": file.type,
+              },
+              body: file,
+            }).then(() => {
+              setFileUploaded({
+                file_url: res.file_url,
+                key: res.key,
+              });
+              console.log("File uploaded to S3", {
+                file_url: res.file_url,
+                key: res.key,
+              });
+            });
           });
 
-          await fetch(res.file_url, {
-            method: "PUT",
-            headers: {
-              "Content-Type": file.type,
-            },
-            body: file,
-          });
-
-          setFileUploaded({
-            file_url: res.file_url,
-            key: res.key,
-          });
-
-          console.log("File uploaded successfully");
+          console.log("File uploaded successfully", fileUploaded);
         }}
         style={{ marginTop: 20, marginBottom: 20, minHeight: 150 }}
       >

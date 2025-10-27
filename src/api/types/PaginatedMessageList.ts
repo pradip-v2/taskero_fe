@@ -11,13 +11,9 @@ export type PaginatedMessageList = {
     */
     count: number;
     /**
-     * @type string, uri
+     * @type integer
     */
-    next?: string | null;
-    /**
-     * @type string, uri
-    */
-    previous?: string | null;
+    next_before?: number | null;
     /**
      * @type array
     */

@@ -12,6 +12,7 @@ export type { Conversation } from "./Conversation.ts";
 export type { ConversationsCreate201, ConversationsCreateMutationRequest, ConversationsCreateMutationResponse, ConversationsCreateMutation } from "./ConversationsCreate.ts";
 export type { ConversationsDestroyPathParams, ConversationsDestroy204, ConversationsDestroyMutationResponse, ConversationsDestroyMutation } from "./ConversationsDestroy.ts";
 export type { ConversationsListQueryParamsTypeEnum, ConversationsListQueryParams, ConversationsList200, ConversationsListQueryResponse, ConversationsListQuery } from "./ConversationsList.ts";
+export type { ConversationsMessagesListPathParams, ConversationsMessagesListQueryParams, ConversationsMessagesList200, ConversationsMessagesListQueryResponse, ConversationsMessagesListQuery } from "./ConversationsMessagesList.ts";
 export type { ConversationsPartialUpdatePathParams, ConversationsPartialUpdate200, ConversationsPartialUpdateMutationRequest, ConversationsPartialUpdateMutationResponse, ConversationsPartialUpdateMutation } from "./ConversationsPartialUpdate.ts";
 export type { ConversationsRetrievePathParams, ConversationsRetrieve200, ConversationsRetrieveQueryResponse, ConversationsRetrieveQuery } from "./ConversationsRetrieve.ts";
 export type { ConversationsUpdatePathParams, ConversationsUpdate200, ConversationsUpdateMutationRequest, ConversationsUpdateMutationResponse, ConversationsUpdateMutation } from "./ConversationsUpdate.ts";

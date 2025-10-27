@@ -13,6 +13,8 @@ export type { ConversationsCreateMutationKey } from "./hooks/conversationsHooks/
 export type { ConversationsDestroyMutationKey } from "./hooks/conversationsHooks/useConversationsDestroy.ts";
 export type { ConversationsListQueryKey } from "./hooks/conversationsHooks/useConversationsList.ts";
 export type { ConversationsListSuspenseQueryKey } from "./hooks/conversationsHooks/useConversationsListSuspense.ts";
+export type { ConversationsMessagesListQueryKey } from "./hooks/conversationsHooks/useConversationsMessagesList.ts";
+export type { ConversationsMessagesListSuspenseQueryKey } from "./hooks/conversationsHooks/useConversationsMessagesListSuspense.ts";
 export type { ConversationsPartialUpdateMutationKey } from "./hooks/conversationsHooks/useConversationsPartialUpdate.ts";
 export type { ConversationsRetrieveQueryKey } from "./hooks/conversationsHooks/useConversationsRetrieve.ts";
 export type { ConversationsRetrieveSuspenseQueryKey } from "./hooks/conversationsHooks/useConversationsRetrieveSuspense.ts";
@@ -82,6 +84,7 @@ export type { Conversation } from "./types/Conversation.ts";
 export type { ConversationsCreate201, ConversationsCreateMutationRequest, ConversationsCreateMutationResponse, ConversationsCreateMutation } from "./types/ConversationsCreate.ts";
 export type { ConversationsDestroyPathParams, ConversationsDestroy204, ConversationsDestroyMutationResponse, ConversationsDestroyMutation } from "./types/ConversationsDestroy.ts";
 export type { ConversationsListQueryParamsTypeEnum, ConversationsListQueryParams, ConversationsList200, ConversationsListQueryResponse, ConversationsListQuery } from "./types/ConversationsList.ts";
+export type { ConversationsMessagesListPathParams, ConversationsMessagesListQueryParams, ConversationsMessagesList200, ConversationsMessagesListQueryResponse, ConversationsMessagesListQuery } from "./types/ConversationsMessagesList.ts";
 export type { ConversationsPartialUpdatePathParams, ConversationsPartialUpdate200, ConversationsPartialUpdateMutationRequest, ConversationsPartialUpdateMutationResponse, ConversationsPartialUpdateMutation } from "./types/ConversationsPartialUpdate.ts";
 export type { ConversationsRetrievePathParams, ConversationsRetrieve200, ConversationsRetrieveQueryResponse, ConversationsRetrieveQuery } from "./types/ConversationsRetrieve.ts";
 export type { ConversationsUpdatePathParams, ConversationsUpdate200, ConversationsUpdateMutationRequest, ConversationsUpdateMutationResponse, ConversationsUpdateMutation } from "./types/ConversationsUpdate.ts";
@@ -181,6 +184,8 @@ export { conversationsCreateMutationKey, conversationsCreate, useConversationsCr
 export { conversationsDestroyMutationKey, conversationsDestroy, useConversationsDestroy } from "./hooks/conversationsHooks/useConversationsDestroy.ts";
 export { conversationsListQueryKey, conversationsList, conversationsListQueryOptions, useConversationsList } from "./hooks/conversationsHooks/useConversationsList.ts";
 export { conversationsListSuspenseQueryKey, conversationsListSuspense, conversationsListSuspenseQueryOptions, useConversationsListSuspense } from "./hooks/conversationsHooks/useConversationsListSuspense.ts";
+export { conversationsMessagesListQueryKey, conversationsMessagesList, conversationsMessagesListQueryOptions, useConversationsMessagesList } from "./hooks/conversationsHooks/useConversationsMessagesList.ts";
+export { conversationsMessagesListSuspenseQueryKey, conversationsMessagesListSuspense, conversationsMessagesListSuspenseQueryOptions, useConversationsMessagesListSuspense } from "./hooks/conversationsHooks/useConversationsMessagesListSuspense.ts";
 export { conversationsPartialUpdateMutationKey, conversationsPartialUpdate, useConversationsPartialUpdate } from "./hooks/conversationsHooks/useConversationsPartialUpdate.ts";
 export { conversationsRetrieveQueryKey, conversationsRetrieve, conversationsRetrieveQueryOptions, useConversationsRetrieve } from "./hooks/conversationsHooks/useConversationsRetrieve.ts";
 export { conversationsRetrieveSuspenseQueryKey, conversationsRetrieveSuspense, conversationsRetrieveSuspenseQueryOptions, useConversationsRetrieveSuspense } from "./hooks/conversationsHooks/useConversationsRetrieveSuspense.ts";

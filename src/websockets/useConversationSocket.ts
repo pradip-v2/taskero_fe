@@ -1,5 +1,9 @@
 import { useEffect, useRef, useCallback, useState } from "react";
-import type { Message, MessageAttachmentRequest } from "@/api";
+import {
+  conversationsMessagesList,
+  type Message,
+  type MessageAttachmentRequest,
+} from "@/api";
 
 type ServerEvent = { type: "chat.history"; messages: Message[] } | Message;
 
@@ -17,6 +21,7 @@ export function useConversationSocket({
   const socketRef = useRef<WebSocket | null>(null);
   const [isConnected, setConnected] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxNjUwNjcxLCJpYXQiOjE3NjE1NjQyNzEsImp0aSI6IjNmYzc4Y2ZkY2NkMDQwMTE5M2JmYjBmMDNkNmFkMjhkIiwidXNlcl9pZCI6IjEifQ.OhWzfkg2Ur-jl7YFkhhjsPzo8J3zK8Uox5ObEO3E9e8";
@@ -66,9 +71,26 @@ export function useConversationSocket({
     []
   );
 
+  const loadMore = useCallback(
+    (limit: number = 20) => {
+      setIsLoadingMore(true);
+      conversationsMessagesList(conversationId?.toString(), {
+        limit,
+        before: messages?.at(0)?.id,
+      })
+        .then((res) => {
+          setMessages((prev) => [...res.results, ...prev]);
+        })
+        .finally(() => setIsLoadingMore(false));
+    },
+    [conversationId, messages]
+  );
+
   return {
     sendMessage,
     isConnected,
     messages,
+    loadMore,
+    isLoadingMore,
   };
 }

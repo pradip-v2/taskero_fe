@@ -10,9 +10,10 @@ export const Route = createFileRoute("/test")({
 });
 
 function RouteComponent() {
-  const { messages, sendMessage } = useConversationSocket({
-    conversationId: 1,
-  });
+  const { messages, sendMessage, isLoadingMore, loadMore } =
+    useConversationSocket({
+      conversationId: 1,
+    });
   const { mutateAsync: createS3PreSignedUrl } = useS3PresignedUrlCreate();
   const [fileUploaded, setFileUploaded] =
     useState<MessageAttachmentRequest | null>(null);
@@ -30,6 +31,9 @@ function RouteComponent() {
         }}
       >
         Send
+      </Button>
+      <Button onClick={() => loadMore(3)} loading={isLoadingMore}>
+        {isLoadingMore ? "Loading more..." : "Load More"}
       </Button>
       <Dropzone
         onDrop={async (files) => {

@@ -28,6 +28,7 @@ function RouteComponent() {
             "Hi at " + new Date().toString(),
             fileUploaded ? [fileUploaded] : []
           );
+          setFileUploaded(null);
         }}
       >
         Send

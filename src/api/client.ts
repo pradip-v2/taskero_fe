@@ -73,6 +73,8 @@ axiosInstance.interceptors.request.use((config) => {
   if (import.meta.env.MODE == "dev" && !!baseUrl) {
     config.baseURL = baseUrl;
   }
+  config.headers.Authorization =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0MzU4NjIxLCJpYXQiOjE3NjQyNzIyMjEsImp0aSI6IjdkZmQwN2YwNzIwZTQ5YjJiZTA4MTYwZGIwNTZiN2RlIiwidXNlcl9pZCI6IjEifQ.hbPl0H9DkejB5jvcZJzLhNvWuJKcgIkZIGjboIAf0eQ";
   if (userObj?.access)
     config.headers.Authorization = "Bearer " + userObj?.access;
   return config;

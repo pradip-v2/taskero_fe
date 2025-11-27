@@ -24,7 +24,7 @@ export function useConversationSocket({
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYxNjUwNjcxLCJpYXQiOjE3NjE1NjQyNzEsImp0aSI6IjNmYzc4Y2ZkY2NkMDQwMTE5M2JmYjBmMDNkNmFkMjhkIiwidXNlcl9pZCI6IjEifQ.OhWzfkg2Ur-jl7YFkhhjsPzo8J3zK8Uox5ObEO3E9e8";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0MzU4NjIxLCJpYXQiOjE3NjQyNzIyMjEsImp0aSI6IjdkZmQwN2YwNzIwZTQ5YjJiZTA4MTYwZGIwNTZiN2RlIiwidXNlcl9pZCI6IjEifQ.hbPl0H9DkejB5jvcZJzLhNvWuJKcgIkZIGjboIAf0eQ";
 
   const connect = useCallback(() => {
     const wsUrl = new URL(

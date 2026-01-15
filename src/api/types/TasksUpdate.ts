@@ -15,7 +15,7 @@ export type TasksUpdatePathParams = {
 
 export type TasksUpdate200 = Task;
 
-export type TasksUpdateMutationRequest = Omit<NonNullable<Task>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "created_at" | "updated_at">;
+export type TasksUpdateMutationRequest = Omit<NonNullable<Task>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "status_data" | "created_at" | "updated_at">;
 
 export type TasksUpdateMutationResponse = TasksUpdate200;
 

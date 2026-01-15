@@ -1,11 +1,25 @@
-import { useProjectsTasksList, useTasksCreate, type Task } from "@/api";
+import {
+  useProjectsTasksList,
+  useTasksCreate,
+  useTasksPartialUpdate,
+  type Task,
+} from "@/api";
 import TaskForm from "@/components/project/TaskForm";
 import CustomTable from "@/components/shared/custom-table/CustomTable";
 import type { PaginationProps } from "@/types/PaginationProps";
 import { validatePaginationParams } from "@/utils/search-param-utils";
-import { Button, Flex, Modal, SegmentedControl } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Flex,
+  Menu,
+  Modal,
+  SegmentedControl,
+} from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import { useDisclosure } from "@mantine/hooks";
+import { IconDots } from "@tabler/icons-react";
+import { useState } from "react";
 
 export const Route = createFileRoute(
   "/_authenticated/app/_layout/project/$projectId/_layout/tasks"
@@ -32,6 +46,8 @@ function RouteComponent() {
   const search = Route.useSearch();
   const { page_no = 1, page_size = 10, view = "plain" } = search;
   const [openedAddTaskModal, handlersAddTaskModal] = useDisclosure(false);
+  const [openedUpdateTaskModal, handlersUpdateTaskModal] = useDisclosure(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   const { data: paginatedTasks, refetch: refetchTasks } = useProjectsTasksList(
     projectId,
@@ -48,6 +64,7 @@ function RouteComponent() {
   );
 
   const { mutateAsync: createTask } = useTasksCreate();
+  const { mutateAsync: updateTask } = useTasksPartialUpdate();
 
   return (
     <Flex direction={"column"} w={"100%"}>
@@ -93,9 +110,57 @@ function RouteComponent() {
             accessor: "title",
           },
           {
+            header: "Status",
+            accessor: "status",
+            render: (row) => row.status_data?.title,
+          },
+          {
             header: "Assignee",
             accessor: "assignee_data",
             render: (row) => row.assignee_data?.name,
+          },
+          {
+            header: "Actions",
+            accessor: "status",
+            render: (row) => (
+              <Menu>
+                <Menu.Target>
+                  <ActionIcon variant={"transparent"}>
+                    <IconDots />
+                  </ActionIcon>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item
+                    onClick={() => {
+                      setSelectedTask(row);
+                      handlersUpdateTaskModal.open();
+                    }}
+                  >
+                    Edit Task
+                  </Menu.Item>
+                </Menu.Dropdown>
+                <Modal
+                  opened={openedUpdateTaskModal}
+                  onClose={handlersUpdateTaskModal.close}
+                >
+                  <TaskForm
+                    initialData={selectedTask ?? undefined}
+                    onSave={async (values) => {
+                      return updateTask({
+                        id: selectedTask!.id,
+                        data: values,
+                      }).then(() => {
+                        handlersUpdateTaskModal.close();
+                        refetchTasks();
+                      });
+                    }}
+                    onCancel={function (): void {
+                      handlersUpdateTaskModal.close();
+                    }}
+                  />
+                </Modal>
+              </Menu>
+            ),
           },
         ]}
         data={paginatedTasks?.results || []}

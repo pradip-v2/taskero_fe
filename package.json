@@ -22,6 +22,7 @@
     "@mantine/hooks": "^8.3.3",
     "@mantine/modals": "^8.3.3",
     "@mantine/notifications": "^8.3.3",
+    "@tabler/icons-react": "^3.36.1",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/nitro-v2-vite-plugin": "^1.132.31",
     "@tanstack/react-devtools": "^0.7.0",

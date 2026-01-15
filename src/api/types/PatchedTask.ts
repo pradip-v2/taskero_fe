@@ -4,6 +4,7 @@
 */
 
 import type { ProjectRelationShort } from "./ProjectRelationShort.ts";
+import type { TaskStatus } from "./TaskStatus.ts";
 import type { UserMinDetails } from "./UserMinDetails.ts";
 import type { UserRelationShort } from "./UserRelationShort.ts";
 
@@ -24,6 +25,7 @@ export type PatchedTask = {
      * @type integer | undefined
     */
     readonly subtasks_count?: number;
+    readonly status_data?: TaskStatus;
     /**
      * @type string | undefined, date-time
     */

@@ -16,7 +16,7 @@ export type TasksPartialUpdatePathParams = {
 
 export type TasksPartialUpdate200 = Task;
 
-export type TasksPartialUpdateMutationRequest = Omit<NonNullable<PatchedTask>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "created_at" | "updated_at">;
+export type TasksPartialUpdateMutationRequest = Omit<NonNullable<PatchedTask>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "status_data" | "created_at" | "updated_at">;
 
 export type TasksPartialUpdateMutationResponse = TasksPartialUpdate200;
 

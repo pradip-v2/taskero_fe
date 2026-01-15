@@ -15,7 +15,7 @@ export type ProjectsUpdatePathParams = {
 
 export type ProjectsUpdate200 = Project;
 
-export type ProjectsUpdateMutationRequest = Omit<NonNullable<Project>, "id" | "created_by_data" | "updated_by_data" | "created_at" | "updated_at">;
+export type ProjectsUpdateMutationRequest = Omit<NonNullable<Project>, "id" | "created_by_data" | "updated_by_data" | "owner_data" | "created_at" | "updated_at">;
 
 export type ProjectsUpdateMutationResponse = ProjectsUpdate200;
 

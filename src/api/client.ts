@@ -1,9 +1,9 @@
 import axios from "axios";
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import type { AuthLoginCreateMutationResponse as LoginResponse } from "./types";
+import { LOCAL_STORAGE_USER_KEY } from "@/auth";
 
 const BASE_PATH = import.meta.env.VITE_BASE_URL;
-export const LOCAL_STORAGE_USER_KEY = "taskero_user";
 
 export type RequestConfig<TVariables = unknown> = {
   method:
@@ -73,8 +73,8 @@ axiosInstance.interceptors.request.use((config) => {
   if (import.meta.env.MODE == "dev" && !!baseUrl) {
     config.baseURL = baseUrl;
   }
-  config.headers.Authorization =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzY0MzU4NjIxLCJpYXQiOjE3NjQyNzIyMjEsImp0aSI6IjdkZmQwN2YwNzIwZTQ5YjJiZTA4MTYwZGIwNTZiN2RlIiwidXNlcl9pZCI6IjEifQ.hbPl0H9DkejB5jvcZJzLhNvWuJKcgIkZIGjboIAf0eQ";
+  console.log("Request Interceptor Triggered", config.url, userObj);
+
   if (userObj?.access)
     config.headers.Authorization = "Bearer " + userObj?.access;
   return config;

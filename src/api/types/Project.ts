@@ -16,10 +16,7 @@ export type Project = {
     readonly id: number;
     readonly created_by_data: UserMinDetails | null;
     readonly updated_by_data: UserMinDetails | null;
-    /**
-     * @type object
-    */
-    owner_data: UserRelationShort;
+    readonly owner_data: UserRelationShort;
     /**
      * @type string, date-time
     */

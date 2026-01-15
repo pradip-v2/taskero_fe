@@ -16,7 +16,7 @@ export type ProjectsPartialUpdatePathParams = {
 
 export type ProjectsPartialUpdate200 = Project;
 
-export type ProjectsPartialUpdateMutationRequest = Omit<NonNullable<PatchedProject>, "id" | "created_by_data" | "updated_by_data" | "created_at" | "updated_at">;
+export type ProjectsPartialUpdateMutationRequest = Omit<NonNullable<PatchedProject>, "id" | "created_by_data" | "updated_by_data" | "owner_data" | "created_at" | "updated_at">;
 
 export type ProjectsPartialUpdateMutationResponse = ProjectsPartialUpdate200;
 

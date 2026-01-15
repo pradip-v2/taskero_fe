@@ -16,10 +16,7 @@ export type PatchedProject = {
     readonly id?: number;
     readonly created_by_data?: UserMinDetails | null;
     readonly updated_by_data?: UserMinDetails | null;
-    /**
-     * @type object | undefined
-    */
-    owner_data?: UserRelationShort;
+    readonly owner_data?: UserRelationShort;
     /**
      * @type string | undefined, date-time
     */

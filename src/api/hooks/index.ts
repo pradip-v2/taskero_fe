@@ -48,6 +48,9 @@ export type { ProjectsUpdateMutationKey } from "./projectsHooks/useProjectsUpdat
 export type { S3PresignedUrlCreateMutationKey } from "./s3Hooks/useS3PresignedUrlCreate.ts";
 export type { SchemaRetrieveQueryKey } from "./schemaHooks/useSchemaRetrieve.ts";
 export type { SchemaRetrieveSuspenseQueryKey } from "./schemaHooks/useSchemaRetrieveSuspense.ts";
+export type { TaskStatusCreateMutationKey } from "./task-statusHooks/useTaskStatusCreate.ts";
+export type { TaskStatusListQueryKey } from "./task-statusHooks/useTaskStatusList.ts";
+export type { TaskStatusListSuspenseQueryKey } from "./task-statusHooks/useTaskStatusListSuspense.ts";
 export type { TasksCreateMutationKey } from "./tasksHooks/useTasksCreate.ts";
 export type { TasksDestroyMutationKey } from "./tasksHooks/useTasksDestroy.ts";
 export type { TasksPartialUpdateMutationKey } from "./tasksHooks/useTasksPartialUpdate.ts";
@@ -69,6 +72,8 @@ export type { UsersProjectsListQueryKey } from "./usersHooks/useUsersProjectsLis
 export type { UsersProjectsListSuspenseQueryKey } from "./usersHooks/useUsersProjectsListSuspense.ts";
 export type { UsersRetrieveQueryKey } from "./usersHooks/useUsersRetrieve.ts";
 export type { UsersRetrieveSuspenseQueryKey } from "./usersHooks/useUsersRetrieveSuspense.ts";
+export type { UsersSearchRetrieveQueryKey } from "./usersHooks/useUsersSearchRetrieve.ts";
+export type { UsersSearchRetrieveSuspenseQueryKey } from "./usersHooks/useUsersSearchRetrieveSuspense.ts";
 export type { UsersUpdateMutationKey } from "./usersHooks/useUsersUpdate.ts";
 export { authLoginCreateMutationKey, authLoginCreate, useAuthLoginCreate } from "./authHooks/useAuthLoginCreate.ts";
 export { authLogoutCreateMutationKey, authLogoutCreate, useAuthLogoutCreate } from "./authHooks/useAuthLogoutCreate.ts";
@@ -120,6 +125,9 @@ export { projectsUpdateMutationKey, projectsUpdate, useProjectsUpdate } from "./
 export { s3PresignedUrlCreateMutationKey, s3PresignedUrlCreate, useS3PresignedUrlCreate } from "./s3Hooks/useS3PresignedUrlCreate.ts";
 export { schemaRetrieveQueryKey, schemaRetrieve, schemaRetrieveQueryOptions, useSchemaRetrieve } from "./schemaHooks/useSchemaRetrieve.ts";
 export { schemaRetrieveSuspenseQueryKey, schemaRetrieveSuspense, schemaRetrieveSuspenseQueryOptions, useSchemaRetrieveSuspense } from "./schemaHooks/useSchemaRetrieveSuspense.ts";
+export { taskStatusCreateMutationKey, taskStatusCreate, useTaskStatusCreate } from "./task-statusHooks/useTaskStatusCreate.ts";
+export { taskStatusListQueryKey, taskStatusList, taskStatusListQueryOptions, useTaskStatusList } from "./task-statusHooks/useTaskStatusList.ts";
+export { taskStatusListSuspenseQueryKey, taskStatusListSuspense, taskStatusListSuspenseQueryOptions, useTaskStatusListSuspense } from "./task-statusHooks/useTaskStatusListSuspense.ts";
 export { tasksCreateMutationKey, tasksCreate, useTasksCreate } from "./tasksHooks/useTasksCreate.ts";
 export { tasksDestroyMutationKey, tasksDestroy, useTasksDestroy } from "./tasksHooks/useTasksDestroy.ts";
 export { tasksPartialUpdateMutationKey, tasksPartialUpdate, useTasksPartialUpdate } from "./tasksHooks/useTasksPartialUpdate.ts";
@@ -141,4 +149,6 @@ export { usersProjectsListQueryKey, usersProjectsList, usersProjectsListQueryOpt
 export { usersProjectsListSuspenseQueryKey, usersProjectsListSuspense, usersProjectsListSuspenseQueryOptions, useUsersProjectsListSuspense } from "./usersHooks/useUsersProjectsListSuspense.ts";
 export { usersRetrieveQueryKey, usersRetrieve, usersRetrieveQueryOptions, useUsersRetrieve } from "./usersHooks/useUsersRetrieve.ts";
 export { usersRetrieveSuspenseQueryKey, usersRetrieveSuspense, usersRetrieveSuspenseQueryOptions, useUsersRetrieveSuspense } from "./usersHooks/useUsersRetrieveSuspense.ts";
+export { usersSearchRetrieveQueryKey, usersSearchRetrieve, usersSearchRetrieveQueryOptions, useUsersSearchRetrieve } from "./usersHooks/useUsersSearchRetrieve.ts";
+export { usersSearchRetrieveSuspenseQueryKey, usersSearchRetrieveSuspense, usersSearchRetrieveSuspenseQueryOptions, useUsersSearchRetrieveSuspense } from "./usersHooks/useUsersSearchRetrieveSuspense.ts";
 export { usersUpdateMutationKey, usersUpdate, useUsersUpdate } from "./usersHooks/useUsersUpdate.ts";

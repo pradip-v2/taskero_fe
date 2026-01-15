@@ -7,7 +7,7 @@ import type { Project } from "./Project.ts";
 
 export type ProjectsCreate201 = Project;
 
-export type ProjectsCreateMutationRequest = Omit<NonNullable<Project>, "id" | "created_by_data" | "updated_by_data" | "created_at" | "updated_at">;
+export type ProjectsCreateMutationRequest = Omit<NonNullable<Project>, "id" | "created_by_data" | "updated_by_data" | "owner_data" | "created_at" | "updated_at">;
 
 export type ProjectsCreateMutationResponse = ProjectsCreate201;
 

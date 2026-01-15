@@ -7,6 +7,8 @@ export type { UsersProjectsListQueryKey } from "./useUsersProjectsList.ts";
 export type { UsersProjectsListSuspenseQueryKey } from "./useUsersProjectsListSuspense.ts";
 export type { UsersRetrieveQueryKey } from "./useUsersRetrieve.ts";
 export type { UsersRetrieveSuspenseQueryKey } from "./useUsersRetrieveSuspense.ts";
+export type { UsersSearchRetrieveQueryKey } from "./useUsersSearchRetrieve.ts";
+export type { UsersSearchRetrieveSuspenseQueryKey } from "./useUsersSearchRetrieveSuspense.ts";
 export type { UsersUpdateMutationKey } from "./useUsersUpdate.ts";
 export { usersCreateMutationKey, usersCreate, useUsersCreate } from "./useUsersCreate.ts";
 export { usersDestroyMutationKey, usersDestroy, useUsersDestroy } from "./useUsersDestroy.ts";
@@ -17,4 +19,6 @@ export { usersProjectsListQueryKey, usersProjectsList, usersProjectsListQueryOpt
 export { usersProjectsListSuspenseQueryKey, usersProjectsListSuspense, usersProjectsListSuspenseQueryOptions, useUsersProjectsListSuspense } from "./useUsersProjectsListSuspense.ts";
 export { usersRetrieveQueryKey, usersRetrieve, usersRetrieveQueryOptions, useUsersRetrieve } from "./useUsersRetrieve.ts";
 export { usersRetrieveSuspenseQueryKey, usersRetrieveSuspense, usersRetrieveSuspenseQueryOptions, useUsersRetrieveSuspense } from "./useUsersRetrieveSuspense.ts";
+export { usersSearchRetrieveQueryKey, usersSearchRetrieve, usersSearchRetrieveQueryOptions, useUsersSearchRetrieve } from "./useUsersSearchRetrieve.ts";
+export { usersSearchRetrieveSuspenseQueryKey, usersSearchRetrieveSuspense, usersSearchRetrieveSuspenseQueryOptions, useUsersSearchRetrieveSuspense } from "./useUsersSearchRetrieveSuspense.ts";
 export { usersUpdateMutationKey, usersUpdate, useUsersUpdate } from "./useUsersUpdate.ts";

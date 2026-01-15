@@ -14,26 +14,34 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestRouteImport } from './routes/test'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthLayoutRouteImport } from './routes/auth/_layout'
-import { Route as AppLayoutRouteImport } from './routes/app/_layout'
 import { Route as AuthLayoutLoginRouteImport } from './routes/auth/_layout/login'
-import { Route as AppLayoutTwoRouteImport } from './routes/app/_layout/two'
-import { Route as AppLayoutOneRouteImport } from './routes/app/_layout/one'
-import { Route as AuthAuthenticatedAppLayoutRouteImport } from './routes/auth/_authenticated/app/_layout'
+import { Route as AuthenticatedAppLayoutRouteImport } from './routes/_authenticated/app/_layout'
+import { Route as AuthenticatedAppLayoutIndexRouteImport } from './routes/_authenticated/app/_layout/index'
+import { Route as AuthenticatedAppLayoutTwoRouteImport } from './routes/_authenticated/app/_layout/two'
+import { Route as AuthenticatedAppLayoutProjectsRouteImport } from './routes/_authenticated/app/_layout/projects'
+import { Route as AuthenticatedAppLayoutOneRouteImport } from './routes/_authenticated/app/_layout/one'
+import { Route as AuthenticatedAppLayoutDashboardRouteImport } from './routes/_authenticated/app/_layout/dashboard'
+import { Route as AuthenticatedAppLayoutSettingsLayoutRouteImport } from './routes/_authenticated/app/_layout/settings/_layout'
+import { Route as AuthenticatedAppLayoutSettingsLayoutIndexRouteImport } from './routes/_authenticated/app/_layout/settings/_layout/index'
+import { Route as AuthenticatedAppLayoutSettingsLayoutTwoRouteImport } from './routes/_authenticated/app/_layout/settings/_layout/two'
+import { Route as AuthenticatedAppLayoutSettingsLayoutOneRouteImport } from './routes/_authenticated/app/_layout/settings/_layout/one'
+import { Route as AuthenticatedAppLayoutProjectProjectIdLayoutRouteImport } from './routes/_authenticated/app/_layout/project.$projectId/_layout'
+import { Route as AuthenticatedAppLayoutProjectProjectIdLayoutTasksRouteImport } from './routes/_authenticated/app/_layout/project.$projectId/_layout/tasks'
+import { Route as AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRouteImport } from './routes/_authenticated/app/_layout/project.$projectId/_layout/summary'
+import { Route as AuthenticatedAppLayoutProjectProjectIdLayoutMembersRouteImport } from './routes/_authenticated/app/_layout/project.$projectId/_layout/members'
 
 const AuthRouteImport = createFileRoute('/auth')()
-const AppRouteImport = createFileRoute('/app')()
-const AuthAuthenticatedAppRouteImport = createFileRoute(
-  '/auth/_authenticated/app',
+const AuthenticatedAppRouteImport = createFileRoute('/_authenticated/app')()
+const AuthenticatedAppLayoutSettingsRouteImport = createFileRoute(
+  '/_authenticated/app/_layout/settings',
+)()
+const AuthenticatedAppLayoutProjectProjectIdRouteImport = createFileRoute(
+  '/_authenticated/app/_layout/project/$projectId',
 )()
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppRoute = AppRouteImport.update({
-  id: '/app',
-  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestRoute = TestRouteImport.update({
@@ -46,17 +54,13 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthLayoutRoute = AuthLayoutRouteImport.update({
-  id: '/_layout',
-  getParentRoute: () => AuthRoute,
-} as any)
-const AppLayoutRoute = AppLayoutRouteImport.update({
-  id: '/_layout',
-  getParentRoute: () => AppRoute,
-} as any)
-const AuthAuthenticatedAppRoute = AuthAuthenticatedAppRouteImport.update({
+const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
   id: '/_authenticated/app',
   path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLayoutRoute = AuthLayoutRouteImport.update({
+  id: '/_layout',
   getParentRoute: () => AuthRoute,
 } as any)
 const AuthLayoutLoginRoute = AuthLayoutLoginRouteImport.update({
@@ -64,97 +68,232 @@ const AuthLayoutLoginRoute = AuthLayoutLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthLayoutRoute,
 } as any)
-const AppLayoutTwoRoute = AppLayoutTwoRouteImport.update({
-  id: '/two',
-  path: '/two',
-  getParentRoute: () => AppLayoutRoute,
+const AuthenticatedAppLayoutRoute = AuthenticatedAppLayoutRouteImport.update({
+  id: '/_layout',
+  getParentRoute: () => AuthenticatedAppRoute,
 } as any)
-const AppLayoutOneRoute = AppLayoutOneRouteImport.update({
-  id: '/one',
-  path: '/one',
-  getParentRoute: () => AppLayoutRoute,
-} as any)
-const AuthAuthenticatedAppLayoutRoute =
-  AuthAuthenticatedAppLayoutRouteImport.update({
+const AuthenticatedAppLayoutSettingsRoute =
+  AuthenticatedAppLayoutSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutIndexRoute =
+  AuthenticatedAppLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutTwoRoute =
+  AuthenticatedAppLayoutTwoRouteImport.update({
+    id: '/two',
+    path: '/two',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectsRoute =
+  AuthenticatedAppLayoutProjectsRouteImport.update({
+    id: '/projects',
+    path: '/projects',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutOneRoute =
+  AuthenticatedAppLayoutOneRouteImport.update({
+    id: '/one',
+    path: '/one',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutDashboardRoute =
+  AuthenticatedAppLayoutDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectProjectIdRoute =
+  AuthenticatedAppLayoutProjectProjectIdRouteImport.update({
+    id: '/project/$projectId',
+    path: '/project/$projectId',
+    getParentRoute: () => AuthenticatedAppLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutSettingsLayoutRoute =
+  AuthenticatedAppLayoutSettingsLayoutRouteImport.update({
     id: '/_layout',
-    getParentRoute: () => AuthAuthenticatedAppRoute,
+    getParentRoute: () => AuthenticatedAppLayoutSettingsRoute,
+  } as any)
+const AuthenticatedAppLayoutSettingsLayoutIndexRoute =
+  AuthenticatedAppLayoutSettingsLayoutIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedAppLayoutSettingsLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutSettingsLayoutTwoRoute =
+  AuthenticatedAppLayoutSettingsLayoutTwoRouteImport.update({
+    id: '/two',
+    path: '/two',
+    getParentRoute: () => AuthenticatedAppLayoutSettingsLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutSettingsLayoutOneRoute =
+  AuthenticatedAppLayoutSettingsLayoutOneRouteImport.update({
+    id: '/one',
+    path: '/one',
+    getParentRoute: () => AuthenticatedAppLayoutSettingsLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectProjectIdLayoutRoute =
+  AuthenticatedAppLayoutProjectProjectIdLayoutRouteImport.update({
+    id: '/_layout',
+    getParentRoute: () => AuthenticatedAppLayoutProjectProjectIdRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute =
+  AuthenticatedAppLayoutProjectProjectIdLayoutTasksRouteImport.update({
+    id: '/tasks',
+    path: '/tasks',
+    getParentRoute: () => AuthenticatedAppLayoutProjectProjectIdLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute =
+  AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRouteImport.update({
+    id: '/summary',
+    path: '/summary',
+    getParentRoute: () => AuthenticatedAppLayoutProjectProjectIdLayoutRoute,
+  } as any)
+const AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute =
+  AuthenticatedAppLayoutProjectProjectIdLayoutMembersRouteImport.update({
+    id: '/members',
+    path: '/members',
+    getParentRoute: () => AuthenticatedAppLayoutProjectProjectIdLayoutRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/test': typeof TestRoute
-  '/app': typeof AppLayoutRouteWithChildren
   '/auth': typeof AuthLayoutRouteWithChildren
-  '/app/one': typeof AppLayoutOneRoute
-  '/app/two': typeof AppLayoutTwoRoute
+  '/app': typeof AuthenticatedAppLayoutRouteWithChildren
   '/auth/login': typeof AuthLayoutLoginRoute
-  '/auth/app': typeof AuthAuthenticatedAppLayoutRoute
+  '/app/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
+  '/app/one': typeof AuthenticatedAppLayoutOneRoute
+  '/app/projects': typeof AuthenticatedAppLayoutProjectsRoute
+  '/app/two': typeof AuthenticatedAppLayoutTwoRoute
+  '/app/': typeof AuthenticatedAppLayoutIndexRoute
+  '/app/settings': typeof AuthenticatedAppLayoutSettingsLayoutRouteWithChildren
+  '/app/project/$projectId': typeof AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren
+  '/app/settings/one': typeof AuthenticatedAppLayoutSettingsLayoutOneRoute
+  '/app/settings/two': typeof AuthenticatedAppLayoutSettingsLayoutTwoRoute
+  '/app/settings/': typeof AuthenticatedAppLayoutSettingsLayoutIndexRoute
+  '/app/project/$projectId/members': typeof AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute
+  '/app/project/$projectId/summary': typeof AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute
+  '/app/project/$projectId/tasks': typeof AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/test': typeof TestRoute
-  '/app': typeof AppLayoutRouteWithChildren
   '/auth': typeof AuthLayoutRouteWithChildren
-  '/app/one': typeof AppLayoutOneRoute
-  '/app/two': typeof AppLayoutTwoRoute
+  '/app': typeof AuthenticatedAppLayoutIndexRoute
   '/auth/login': typeof AuthLayoutLoginRoute
-  '/auth/app': typeof AuthAuthenticatedAppLayoutRoute
+  '/app/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
+  '/app/one': typeof AuthenticatedAppLayoutOneRoute
+  '/app/projects': typeof AuthenticatedAppLayoutProjectsRoute
+  '/app/two': typeof AuthenticatedAppLayoutTwoRoute
+  '/app/settings': typeof AuthenticatedAppLayoutSettingsLayoutIndexRoute
+  '/app/project/$projectId': typeof AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren
+  '/app/settings/one': typeof AuthenticatedAppLayoutSettingsLayoutOneRoute
+  '/app/settings/two': typeof AuthenticatedAppLayoutSettingsLayoutTwoRoute
+  '/app/project/$projectId/members': typeof AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute
+  '/app/project/$projectId/summary': typeof AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute
+  '/app/project/$projectId/tasks': typeof AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/test': typeof TestRoute
-  '/app': typeof AppRouteWithChildren
-  '/app/_layout': typeof AppLayoutRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/auth/_layout': typeof AuthLayoutRouteWithChildren
-  '/app/_layout/one': typeof AppLayoutOneRoute
-  '/app/_layout/two': typeof AppLayoutTwoRoute
+  '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
+  '/_authenticated/app/_layout': typeof AuthenticatedAppLayoutRouteWithChildren
   '/auth/_layout/login': typeof AuthLayoutLoginRoute
-  '/auth/_authenticated/app': typeof AuthAuthenticatedAppRouteWithChildren
-  '/auth/_authenticated/app/_layout': typeof AuthAuthenticatedAppLayoutRoute
+  '/_authenticated/app/_layout/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
+  '/_authenticated/app/_layout/one': typeof AuthenticatedAppLayoutOneRoute
+  '/_authenticated/app/_layout/projects': typeof AuthenticatedAppLayoutProjectsRoute
+  '/_authenticated/app/_layout/two': typeof AuthenticatedAppLayoutTwoRoute
+  '/_authenticated/app/_layout/': typeof AuthenticatedAppLayoutIndexRoute
+  '/_authenticated/app/_layout/settings': typeof AuthenticatedAppLayoutSettingsRouteWithChildren
+  '/_authenticated/app/_layout/settings/_layout': typeof AuthenticatedAppLayoutSettingsLayoutRouteWithChildren
+  '/_authenticated/app/_layout/project/$projectId': typeof AuthenticatedAppLayoutProjectProjectIdRouteWithChildren
+  '/_authenticated/app/_layout/project/$projectId/_layout': typeof AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren
+  '/_authenticated/app/_layout/settings/_layout/one': typeof AuthenticatedAppLayoutSettingsLayoutOneRoute
+  '/_authenticated/app/_layout/settings/_layout/two': typeof AuthenticatedAppLayoutSettingsLayoutTwoRoute
+  '/_authenticated/app/_layout/settings/_layout/': typeof AuthenticatedAppLayoutSettingsLayoutIndexRoute
+  '/_authenticated/app/_layout/project/$projectId/_layout/members': typeof AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute
+  '/_authenticated/app/_layout/project/$projectId/_layout/summary': typeof AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute
+  '/_authenticated/app/_layout/project/$projectId/_layout/tasks': typeof AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/test'
-    | '/app'
     | '/auth'
-    | '/app/one'
-    | '/app/two'
+    | '/app'
     | '/auth/login'
-    | '/auth/app'
+    | '/app/dashboard'
+    | '/app/one'
+    | '/app/projects'
+    | '/app/two'
+    | '/app/'
+    | '/app/settings'
+    | '/app/project/$projectId'
+    | '/app/settings/one'
+    | '/app/settings/two'
+    | '/app/settings/'
+    | '/app/project/$projectId/members'
+    | '/app/project/$projectId/summary'
+    | '/app/project/$projectId/tasks'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/test'
-    | '/app'
     | '/auth'
-    | '/app/one'
-    | '/app/two'
+    | '/app'
     | '/auth/login'
-    | '/auth/app'
+    | '/app/dashboard'
+    | '/app/one'
+    | '/app/projects'
+    | '/app/two'
+    | '/app/settings'
+    | '/app/project/$projectId'
+    | '/app/settings/one'
+    | '/app/settings/two'
+    | '/app/project/$projectId/members'
+    | '/app/project/$projectId/summary'
+    | '/app/project/$projectId/tasks'
   id:
     | '__root__'
     | '/'
     | '/test'
-    | '/app'
-    | '/app/_layout'
     | '/auth'
     | '/auth/_layout'
-    | '/app/_layout/one'
-    | '/app/_layout/two'
+    | '/_authenticated/app'
+    | '/_authenticated/app/_layout'
     | '/auth/_layout/login'
-    | '/auth/_authenticated/app'
-    | '/auth/_authenticated/app/_layout'
+    | '/_authenticated/app/_layout/dashboard'
+    | '/_authenticated/app/_layout/one'
+    | '/_authenticated/app/_layout/projects'
+    | '/_authenticated/app/_layout/two'
+    | '/_authenticated/app/_layout/'
+    | '/_authenticated/app/_layout/settings'
+    | '/_authenticated/app/_layout/settings/_layout'
+    | '/_authenticated/app/_layout/project/$projectId'
+    | '/_authenticated/app/_layout/project/$projectId/_layout'
+    | '/_authenticated/app/_layout/settings/_layout/one'
+    | '/_authenticated/app/_layout/settings/_layout/two'
+    | '/_authenticated/app/_layout/settings/_layout/'
+    | '/_authenticated/app/_layout/project/$projectId/_layout/members'
+    | '/_authenticated/app/_layout/project/$projectId/_layout/summary'
+    | '/_authenticated/app/_layout/project/$projectId/_layout/tasks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TestRoute: typeof TestRoute
-  AppRoute: typeof AppRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
+  AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -164,13 +303,6 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/test': {
@@ -187,25 +319,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/app': {
+      id: '/_authenticated/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/_layout': {
       id: '/auth/_layout'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthLayoutRouteImport
-      parentRoute: typeof AuthRoute
-    }
-    '/app/_layout': {
-      id: '/app/_layout'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppLayoutRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/auth/_authenticated/app': {
-      id: '/auth/_authenticated/app'
-      path: '/app'
-      fullPath: '/auth/app'
-      preLoaderRoute: typeof AuthAuthenticatedAppRouteImport
       parentRoute: typeof AuthRoute
     }
     '/auth/_layout/login': {
@@ -215,53 +340,120 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLayoutLoginRouteImport
       parentRoute: typeof AuthLayoutRoute
     }
-    '/app/_layout/two': {
-      id: '/app/_layout/two'
+    '/_authenticated/app/_layout': {
+      id: '/_authenticated/app/_layout'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AuthenticatedAppLayoutRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
+    }
+    '/_authenticated/app/_layout/settings': {
+      id: '/_authenticated/app/_layout/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppLayoutSettingsRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
+    }
+    '/_authenticated/app/_layout/': {
+      id: '/_authenticated/app/_layout/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AuthenticatedAppLayoutIndexRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
+    }
+    '/_authenticated/app/_layout/two': {
+      id: '/_authenticated/app/_layout/two'
       path: '/two'
       fullPath: '/app/two'
-      preLoaderRoute: typeof AppLayoutTwoRouteImport
-      parentRoute: typeof AppLayoutRoute
+      preLoaderRoute: typeof AuthenticatedAppLayoutTwoRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
     }
-    '/app/_layout/one': {
-      id: '/app/_layout/one'
+    '/_authenticated/app/_layout/projects': {
+      id: '/_authenticated/app/_layout/projects'
+      path: '/projects'
+      fullPath: '/app/projects'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectsRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
+    }
+    '/_authenticated/app/_layout/one': {
+      id: '/_authenticated/app/_layout/one'
       path: '/one'
       fullPath: '/app/one'
-      preLoaderRoute: typeof AppLayoutOneRouteImport
-      parentRoute: typeof AppLayoutRoute
+      preLoaderRoute: typeof AuthenticatedAppLayoutOneRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
     }
-    '/auth/_authenticated/app/_layout': {
-      id: '/auth/_authenticated/app/_layout'
-      path: '/app'
-      fullPath: '/auth/app'
-      preLoaderRoute: typeof AuthAuthenticatedAppLayoutRouteImport
-      parentRoute: typeof AuthAuthenticatedAppRoute
+    '/_authenticated/app/_layout/dashboard': {
+      id: '/_authenticated/app/_layout/dashboard'
+      path: '/dashboard'
+      fullPath: '/app/dashboard'
+      preLoaderRoute: typeof AuthenticatedAppLayoutDashboardRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
+    }
+    '/_authenticated/app/_layout/project/$projectId': {
+      id: '/_authenticated/app/_layout/project/$projectId'
+      path: '/project/$projectId'
+      fullPath: '/app/project/$projectId'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectProjectIdRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutRoute
+    }
+    '/_authenticated/app/_layout/settings/_layout': {
+      id: '/_authenticated/app/_layout/settings/_layout'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AuthenticatedAppLayoutSettingsLayoutRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutSettingsRoute
+    }
+    '/_authenticated/app/_layout/settings/_layout/': {
+      id: '/_authenticated/app/_layout/settings/_layout/'
+      path: '/'
+      fullPath: '/app/settings/'
+      preLoaderRoute: typeof AuthenticatedAppLayoutSettingsLayoutIndexRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutSettingsLayoutRoute
+    }
+    '/_authenticated/app/_layout/settings/_layout/two': {
+      id: '/_authenticated/app/_layout/settings/_layout/two'
+      path: '/two'
+      fullPath: '/app/settings/two'
+      preLoaderRoute: typeof AuthenticatedAppLayoutSettingsLayoutTwoRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutSettingsLayoutRoute
+    }
+    '/_authenticated/app/_layout/settings/_layout/one': {
+      id: '/_authenticated/app/_layout/settings/_layout/one'
+      path: '/one'
+      fullPath: '/app/settings/one'
+      preLoaderRoute: typeof AuthenticatedAppLayoutSettingsLayoutOneRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutSettingsLayoutRoute
+    }
+    '/_authenticated/app/_layout/project/$projectId/_layout': {
+      id: '/_authenticated/app/_layout/project/$projectId/_layout'
+      path: '/project/$projectId'
+      fullPath: '/app/project/$projectId'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutProjectProjectIdRoute
+    }
+    '/_authenticated/app/_layout/project/$projectId/_layout/tasks': {
+      id: '/_authenticated/app/_layout/project/$projectId/_layout/tasks'
+      path: '/tasks'
+      fullPath: '/app/project/$projectId/tasks'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutTasksRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutRoute
+    }
+    '/_authenticated/app/_layout/project/$projectId/_layout/summary': {
+      id: '/_authenticated/app/_layout/project/$projectId/_layout/summary'
+      path: '/summary'
+      fullPath: '/app/project/$projectId/summary'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutRoute
+    }
+    '/_authenticated/app/_layout/project/$projectId/_layout/members': {
+      id: '/_authenticated/app/_layout/project/$projectId/_layout/members'
+      path: '/members'
+      fullPath: '/app/project/$projectId/members'
+      preLoaderRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutMembersRouteImport
+      parentRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutRoute
     }
   }
 }
-
-interface AppLayoutRouteChildren {
-  AppLayoutOneRoute: typeof AppLayoutOneRoute
-  AppLayoutTwoRoute: typeof AppLayoutTwoRoute
-}
-
-const AppLayoutRouteChildren: AppLayoutRouteChildren = {
-  AppLayoutOneRoute: AppLayoutOneRoute,
-  AppLayoutTwoRoute: AppLayoutTwoRoute,
-}
-
-const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
-  AppLayoutRouteChildren,
-)
-
-interface AppRouteChildren {
-  AppLayoutRoute: typeof AppLayoutRouteWithChildren
-}
-
-const AppRouteChildren: AppRouteChildren = {
-  AppLayoutRoute: AppLayoutRouteWithChildren,
-}
-
-const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface AuthLayoutRouteChildren {
   AuthLayoutLoginRoute: typeof AuthLayoutLoginRoute
@@ -275,34 +467,132 @@ const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
   AuthLayoutRouteChildren,
 )
 
-interface AuthAuthenticatedAppRouteChildren {
-  AuthAuthenticatedAppLayoutRoute: typeof AuthAuthenticatedAppLayoutRoute
-}
-
-const AuthAuthenticatedAppRouteChildren: AuthAuthenticatedAppRouteChildren = {
-  AuthAuthenticatedAppLayoutRoute: AuthAuthenticatedAppLayoutRoute,
-}
-
-const AuthAuthenticatedAppRouteWithChildren =
-  AuthAuthenticatedAppRoute._addFileChildren(AuthAuthenticatedAppRouteChildren)
-
 interface AuthRouteChildren {
   AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
-  AuthAuthenticatedAppRoute: typeof AuthAuthenticatedAppRouteWithChildren
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthLayoutRoute: AuthLayoutRouteWithChildren,
-  AuthAuthenticatedAppRoute: AuthAuthenticatedAppRouteWithChildren,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
+interface AuthenticatedAppLayoutSettingsLayoutRouteChildren {
+  AuthenticatedAppLayoutSettingsLayoutOneRoute: typeof AuthenticatedAppLayoutSettingsLayoutOneRoute
+  AuthenticatedAppLayoutSettingsLayoutTwoRoute: typeof AuthenticatedAppLayoutSettingsLayoutTwoRoute
+  AuthenticatedAppLayoutSettingsLayoutIndexRoute: typeof AuthenticatedAppLayoutSettingsLayoutIndexRoute
+}
+
+const AuthenticatedAppLayoutSettingsLayoutRouteChildren: AuthenticatedAppLayoutSettingsLayoutRouteChildren =
+  {
+    AuthenticatedAppLayoutSettingsLayoutOneRoute:
+      AuthenticatedAppLayoutSettingsLayoutOneRoute,
+    AuthenticatedAppLayoutSettingsLayoutTwoRoute:
+      AuthenticatedAppLayoutSettingsLayoutTwoRoute,
+    AuthenticatedAppLayoutSettingsLayoutIndexRoute:
+      AuthenticatedAppLayoutSettingsLayoutIndexRoute,
+  }
+
+const AuthenticatedAppLayoutSettingsLayoutRouteWithChildren =
+  AuthenticatedAppLayoutSettingsLayoutRoute._addFileChildren(
+    AuthenticatedAppLayoutSettingsLayoutRouteChildren,
+  )
+
+interface AuthenticatedAppLayoutSettingsRouteChildren {
+  AuthenticatedAppLayoutSettingsLayoutRoute: typeof AuthenticatedAppLayoutSettingsLayoutRouteWithChildren
+}
+
+const AuthenticatedAppLayoutSettingsRouteChildren: AuthenticatedAppLayoutSettingsRouteChildren =
+  {
+    AuthenticatedAppLayoutSettingsLayoutRoute:
+      AuthenticatedAppLayoutSettingsLayoutRouteWithChildren,
+  }
+
+const AuthenticatedAppLayoutSettingsRouteWithChildren =
+  AuthenticatedAppLayoutSettingsRoute._addFileChildren(
+    AuthenticatedAppLayoutSettingsRouteChildren,
+  )
+
+interface AuthenticatedAppLayoutProjectProjectIdLayoutRouteChildren {
+  AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute
+  AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute
+  AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute
+}
+
+const AuthenticatedAppLayoutProjectProjectIdLayoutRouteChildren: AuthenticatedAppLayoutProjectProjectIdLayoutRouteChildren =
+  {
+    AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute:
+      AuthenticatedAppLayoutProjectProjectIdLayoutMembersRoute,
+    AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute:
+      AuthenticatedAppLayoutProjectProjectIdLayoutSummaryRoute,
+    AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute:
+      AuthenticatedAppLayoutProjectProjectIdLayoutTasksRoute,
+  }
+
+const AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren =
+  AuthenticatedAppLayoutProjectProjectIdLayoutRoute._addFileChildren(
+    AuthenticatedAppLayoutProjectProjectIdLayoutRouteChildren,
+  )
+
+interface AuthenticatedAppLayoutProjectProjectIdRouteChildren {
+  AuthenticatedAppLayoutProjectProjectIdLayoutRoute: typeof AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren
+}
+
+const AuthenticatedAppLayoutProjectProjectIdRouteChildren: AuthenticatedAppLayoutProjectProjectIdRouteChildren =
+  {
+    AuthenticatedAppLayoutProjectProjectIdLayoutRoute:
+      AuthenticatedAppLayoutProjectProjectIdLayoutRouteWithChildren,
+  }
+
+const AuthenticatedAppLayoutProjectProjectIdRouteWithChildren =
+  AuthenticatedAppLayoutProjectProjectIdRoute._addFileChildren(
+    AuthenticatedAppLayoutProjectProjectIdRouteChildren,
+  )
+
+interface AuthenticatedAppLayoutRouteChildren {
+  AuthenticatedAppLayoutDashboardRoute: typeof AuthenticatedAppLayoutDashboardRoute
+  AuthenticatedAppLayoutOneRoute: typeof AuthenticatedAppLayoutOneRoute
+  AuthenticatedAppLayoutProjectsRoute: typeof AuthenticatedAppLayoutProjectsRoute
+  AuthenticatedAppLayoutTwoRoute: typeof AuthenticatedAppLayoutTwoRoute
+  AuthenticatedAppLayoutIndexRoute: typeof AuthenticatedAppLayoutIndexRoute
+  AuthenticatedAppLayoutSettingsRoute: typeof AuthenticatedAppLayoutSettingsRouteWithChildren
+  AuthenticatedAppLayoutProjectProjectIdRoute: typeof AuthenticatedAppLayoutProjectProjectIdRouteWithChildren
+}
+
+const AuthenticatedAppLayoutRouteChildren: AuthenticatedAppLayoutRouteChildren =
+  {
+    AuthenticatedAppLayoutDashboardRoute: AuthenticatedAppLayoutDashboardRoute,
+    AuthenticatedAppLayoutOneRoute: AuthenticatedAppLayoutOneRoute,
+    AuthenticatedAppLayoutProjectsRoute: AuthenticatedAppLayoutProjectsRoute,
+    AuthenticatedAppLayoutTwoRoute: AuthenticatedAppLayoutTwoRoute,
+    AuthenticatedAppLayoutIndexRoute: AuthenticatedAppLayoutIndexRoute,
+    AuthenticatedAppLayoutSettingsRoute:
+      AuthenticatedAppLayoutSettingsRouteWithChildren,
+    AuthenticatedAppLayoutProjectProjectIdRoute:
+      AuthenticatedAppLayoutProjectProjectIdRouteWithChildren,
+  }
+
+const AuthenticatedAppLayoutRouteWithChildren =
+  AuthenticatedAppLayoutRoute._addFileChildren(
+    AuthenticatedAppLayoutRouteChildren,
+  )
+
+interface AuthenticatedAppRouteChildren {
+  AuthenticatedAppLayoutRoute: typeof AuthenticatedAppLayoutRouteWithChildren
+}
+
+const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
+  AuthenticatedAppLayoutRoute: AuthenticatedAppLayoutRouteWithChildren,
+}
+
+const AuthenticatedAppRouteWithChildren =
+  AuthenticatedAppRoute._addFileChildren(AuthenticatedAppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TestRoute: TestRoute,
-  AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
+  AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,42 +1,29 @@
 import { Flex, Tabs } from "@mantine/core";
-import {
-  createFileRoute,
-  Link,
-  Outlet,
-  useLocation,
-} from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
-  "/_authenticated/app/_layout/settings/_layout"
+  "/_authenticated/app/_layout/settings/_layout/meta/_layout"
 )({
   component: RouteComponent,
 });
 
-const SETTINGS_TABS = [
-  { label: "Profile", to: "profile" },
-  { label: "Users", to: "users" },
-  { label: "Meta", to: "meta/task-statuses" },
-];
+const SETTINGS_META_TABS = [{ label: "Task Statuses", to: "task-statuses" }];
 
 function RouteComponent() {
   const navigate = Route.useNavigate();
-  const location = useLocation();
-  const currentTab =
-    SETTINGS_TABS.find((tab) => location.pathname.includes(tab.to))?.to ||
-    "profile";
 
   return (
     <Flex direction="column" w={"100%"}>
       <Flex direction="column" w={"100%"} pos={"sticky"} top={0} bg="white">
-        <Tabs value={currentTab}>
+        <Tabs>
           <Tabs.List>
-            {SETTINGS_TABS.map((tab) => (
+            {SETTINGS_META_TABS.map((tab) => (
               <Tabs.Tab
                 key={tab.to}
                 value={tab.to}
                 component={Link}
                 onClick={() => {
-                  navigate({ to: "/app/settings/" + tab.to });
+                  navigate({ to: "/app/settings/meta/" + tab.to });
                 }}
               >
                 {tab.label}

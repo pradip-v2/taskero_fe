@@ -23,7 +23,7 @@ const SIDEBAR_MENU_OPTIONS = [
   { label: "Projects", to: "/app/projects" },
   {
     label: "Settings",
-    to: "/app/settings",
+    to: "/app/settings/profile",
   },
 ];
 
@@ -31,6 +31,9 @@ function RouteComponent() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const location = useLocation();
+  const currentTab =
+    SIDEBAR_MENU_OPTIONS.find((tab) => location.pathname.includes(tab.to))
+      ?.to || "/app/dashboard";
 
   return (
     <AppShell
@@ -71,7 +74,7 @@ function RouteComponent() {
               key={to}
               label={label}
               variant="light"
-              active={location.pathname.startsWith(to)}
+              active={currentTab === to}
             ></NavLink>
           ))}
         </AppShell.Section>

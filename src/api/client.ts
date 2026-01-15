@@ -73,7 +73,6 @@ axiosInstance.interceptors.request.use((config) => {
   if (import.meta.env.MODE == "dev" && !!baseUrl) {
     config.baseURL = baseUrl;
   }
-  console.log("Request Interceptor Triggered", config.url, userObj);
 
   if (userObj?.access)
     config.headers.Authorization = "Bearer " + userObj?.access;

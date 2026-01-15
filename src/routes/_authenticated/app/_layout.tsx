@@ -32,8 +32,6 @@ function RouteComponent() {
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const location = useLocation();
 
-  console.log("Layout match:", location.pathname);
-
   return (
     <AppShell
       padding="md"

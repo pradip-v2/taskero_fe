@@ -4,6 +4,7 @@
 */
 
 import type { ProjectRelationShort } from "./ProjectRelationShort.ts";
+import type { Task } from "./Task.ts";
 import type { TaskStatus } from "./TaskStatus.ts";
 import type { UserMinDetails } from "./UserMinDetails.ts";
 import type { UserRelationShort } from "./UserRelationShort.ts";
@@ -11,7 +12,7 @@ import type { UserRelationShort } from "./UserRelationShort.ts";
 /**
  * @description Base serializer for all models.
 */
-export type PatchedTask = {
+export type PatchedTaskDetail = {
     /**
      * @type integer | undefined
     */
@@ -20,12 +21,11 @@ export type PatchedTask = {
     readonly updated_by_data?: UserMinDetails | null;
     readonly project_data?: ProjectRelationShort;
     readonly assignee_data?: UserRelationShort;
-    /**
-     * @default 0
-     * @type integer | undefined
-    */
-    readonly subtasks_count?: number;
     readonly status_data?: TaskStatus;
+    /**
+     * @type array | undefined
+    */
+    readonly subtasks_data?: Task[];
     /**
      * @type string | undefined, date-time
     */

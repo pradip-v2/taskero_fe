@@ -3,7 +3,7 @@
 * Do not edit manually.
 */
 
-import type { Task } from "./Task.ts";
+import type { TaskDetail } from "./TaskDetail.ts";
 
 export type TasksRetrievePathParams = {
     /**
@@ -13,7 +13,7 @@ export type TasksRetrievePathParams = {
     id: number;
 };
 
-export type TasksRetrieve200 = Task;
+export type TasksRetrieve200 = TaskDetail;
 
 export type TasksRetrieveQueryResponse = TasksRetrieve200;
 

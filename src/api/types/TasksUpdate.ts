@@ -3,7 +3,7 @@
 * Do not edit manually.
 */
 
-import type { Task } from "./Task.ts";
+import type { TaskDetail } from "./TaskDetail.ts";
 
 export type TasksUpdatePathParams = {
     /**
@@ -13,9 +13,9 @@ export type TasksUpdatePathParams = {
     id: number;
 };
 
-export type TasksUpdate200 = Task;
+export type TasksUpdate200 = TaskDetail;
 
-export type TasksUpdateMutationRequest = Omit<NonNullable<Task>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "status_data" | "created_at" | "updated_at">;
+export type TasksUpdateMutationRequest = Omit<NonNullable<TaskDetail>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "status_data" | "subtasks_data" | "created_at" | "updated_at">;
 
 export type TasksUpdateMutationResponse = TasksUpdate200;
 

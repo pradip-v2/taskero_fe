@@ -3,8 +3,8 @@
 * Do not edit manually.
 */
 
-import type { PatchedTask } from "./PatchedTask.ts";
-import type { Task } from "./Task.ts";
+import type { PatchedTaskDetail } from "./PatchedTaskDetail.ts";
+import type { TaskDetail } from "./TaskDetail.ts";
 
 export type TasksPartialUpdatePathParams = {
     /**
@@ -14,9 +14,9 @@ export type TasksPartialUpdatePathParams = {
     id: number;
 };
 
-export type TasksPartialUpdate200 = Task;
+export type TasksPartialUpdate200 = TaskDetail;
 
-export type TasksPartialUpdateMutationRequest = Omit<NonNullable<PatchedTask>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "subtasks_count" | "status_data" | "created_at" | "updated_at">;
+export type TasksPartialUpdateMutationRequest = Omit<NonNullable<PatchedTaskDetail>, "id" | "created_by_data" | "updated_by_data" | "project_data" | "assignee_data" | "status_data" | "subtasks_data" | "created_at" | "updated_at">;
 
 export type TasksPartialUpdateMutationResponse = TasksPartialUpdate200;
 

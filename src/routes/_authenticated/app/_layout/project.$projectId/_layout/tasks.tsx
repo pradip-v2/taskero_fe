@@ -1,4 +1,5 @@
 import {
+  tasksRetrieve,
   useProjectsTasksList,
   useTasksCreate,
   useTasksPartialUpdate,
@@ -12,14 +13,16 @@ import {
   ActionIcon,
   Button,
   Flex,
+  Loader,
   Menu,
   Modal,
   SegmentedControl,
 } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import { useDisclosure } from "@mantine/hooks";
-import { IconDots } from "@tabler/icons-react";
+import { IconChevronRight, IconDots } from "@tabler/icons-react";
 import { useState } from "react";
+import CustomNestedTable from "@/components/shared/custom-table/CustomNestedTable";
 
 export const Route = createFileRoute(
   "/_authenticated/app/_layout/project/$projectId/_layout/tasks"
@@ -45,9 +48,52 @@ function RouteComponent() {
   const { projectId } = Route.useParams();
   const search = Route.useSearch();
   const { page_no = 1, page_size = 10, view = "plain" } = search;
+
   const [openedAddTaskModal, handlersAddTaskModal] = useDisclosure(false);
   const [openedUpdateTaskModal, handlersUpdateTaskModal] = useDisclosure(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [subTasks, setSubTasks] = useState<{
+    [key: number]: {
+      children: Task[];
+      isLoading: boolean;
+      isFetching: boolean;
+      isExpanded: boolean;
+    };
+  }>({});
+
+  function fetchSubTasks(taskId: number) {
+    if (!subTasks?.[taskId]) {
+      setSubTasks((prev) => ({
+        ...prev,
+        [taskId]: {
+          children: [],
+          isLoading: true,
+          isFetching: true,
+          isExpanded: false,
+        },
+      }));
+
+      tasksRetrieve(taskId).then((task) => {
+        setSubTasks((prev) => ({
+          ...prev,
+          [taskId]: {
+            children: task.subtasks_data || [],
+            isLoading: false,
+            isFetching: false,
+            isExpanded: true,
+          },
+        }));
+      });
+    } else {
+      setSubTasks((prev) => ({
+        ...prev,
+        [taskId]: {
+          ...prev[taskId],
+          isExpanded: true,
+        },
+      }));
+    }
+  }
 
   const { data: paginatedTasks, refetch: refetchTasks } = useProjectsTasksList(
     projectId,
@@ -99,81 +145,209 @@ function RouteComponent() {
           />
         </Modal>
       </Flex>
-      <CustomTable<Task>
-        columns={[
-          {
-            header: "ID",
-            accessor: "id",
-          },
-          {
-            header: "Title",
-            accessor: "title",
-          },
-          {
-            header: "Status",
-            accessor: "status",
-            render: (row) => row.status_data?.title,
-          },
-          {
-            header: "Assignee",
-            accessor: "assignee_data",
-            render: (row) => row.assignee_data?.name,
-          },
-          {
-            header: "Actions",
-            accessor: "status",
-            render: (row) => (
-              <Menu>
-                <Menu.Target>
-                  <ActionIcon variant={"transparent"}>
-                    <IconDots />
-                  </ActionIcon>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item
-                    onClick={() => {
-                      setSelectedTask(row);
-                      handlersUpdateTaskModal.open();
-                    }}
+      {view === "nested" && (
+        <CustomNestedTable<Task>
+          childrenMap={subTasks}
+          columns={[
+            {
+              header: "ID",
+              accessor: "id",
+            },
+            {
+              header: "Title",
+              accessor: "title",
+              render: (row) => {
+                return (
+                  <Flex>
+                    <Flex w={30} ml={((row.level ?? 1) - 1) * 30}>
+                      {row.subtasks_count > 0 && (
+                        <ActionIcon
+                          variant="transparent"
+                          color="gray"
+                          onClick={() => {
+                            if (subTasks?.[row.id]?.isExpanded) {
+                              setSubTasks((prev) => ({
+                                ...prev,
+                                [row.id]: {
+                                  ...prev[row.id],
+                                  isExpanded: false,
+                                },
+                              }));
+                            } else {
+                              fetchSubTasks(row.id);
+                            }
+                          }}
+                        >
+                          {!subTasks?.[row.id]?.isExpanded && (
+                            <IconChevronRight />
+                          )}
+                          {subTasks?.[row.id]?.isLoading && (
+                            <Loader size="xs" />
+                          )}
+                          {subTasks?.[row.id]?.isExpanded &&
+                            !subTasks?.[row.id]?.isLoading && (
+                              <IconChevronRight
+                                style={{ transform: "rotate(90deg)" }}
+                              />
+                            )}
+                        </ActionIcon>
+                      )}
+                    </Flex>
+                    <Flex>{row.title}</Flex>
+                  </Flex>
+                );
+              },
+            },
+            {
+              header: "Status",
+              accessor: "status",
+              render: (row) => row.status_data?.title,
+            },
+            {
+              header: "Assignee",
+              accessor: "assignee_data",
+              render: (row) => row.assignee_data?.name,
+            },
+            {
+              header: "Actions",
+              accessor: "status",
+              render: (row) => (
+                <Menu>
+                  <Menu.Target>
+                    <ActionIcon variant={"transparent"}>
+                      <IconDots />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item
+                      onClick={() => {
+                        setSelectedTask(row);
+                        handlersUpdateTaskModal.open();
+                      }}
+                    >
+                      Edit Task
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                  <Modal
+                    opened={openedUpdateTaskModal}
+                    onClose={handlersUpdateTaskModal.close}
                   >
-                    Edit Task
-                  </Menu.Item>
-                </Menu.Dropdown>
-                <Modal
-                  opened={openedUpdateTaskModal}
-                  onClose={handlersUpdateTaskModal.close}
-                >
-                  <TaskForm
-                    initialData={selectedTask ?? undefined}
-                    onSave={async (values) => {
-                      return updateTask({
-                        id: selectedTask!.id,
-                        data: values,
-                      }).then(() => {
+                    <TaskForm
+                      initialData={selectedTask ?? undefined}
+                      onSave={async (values) => {
+                        return updateTask({
+                          id: selectedTask!.id,
+                          data: values,
+                        }).then(() => {
+                          handlersUpdateTaskModal.close();
+                          refetchTasks();
+                        });
+                      }}
+                      onCancel={function (): void {
                         handlersUpdateTaskModal.close();
-                        refetchTasks();
-                      });
-                    }}
-                    onCancel={function (): void {
-                      handlersUpdateTaskModal.close();
-                    }}
-                  />
-                </Modal>
-              </Menu>
-            ),
-          },
-        ]}
-        data={paginatedTasks?.results || []}
-        paginated
-        paginationProps={{
-          pageSize: page_size,
-          currentPage: page_no,
-          totalRecords: paginatedTasks?.count || 0,
-          onPageChange: (page: number) => {
-            navigate({ search: { ...search, page_no: page } });
-          },
-        }}
-      />
+                      }}
+                    />
+                  </Modal>
+                </Menu>
+              ),
+            },
+          ]}
+          data={paginatedTasks?.results || []}
+          paginated
+          paginationProps={{
+            pageSize: page_size,
+            currentPage: page_no,
+            totalRecords: paginatedTasks?.count || 0,
+            onPageChange: (page: number) => {
+              navigate({ search: { ...search, page_no: page } });
+            },
+          }}
+        />
+      )}
+      {view === "plain" && (
+        <CustomTable<Task>
+          columns={[
+            {
+              header: "ID",
+              accessor: "id",
+            },
+            {
+              header: "Title",
+              accessor: "title",
+              render: (row) => {
+                return (
+                  <Flex>
+                    <Flex>{row.title}</Flex>
+                  </Flex>
+                );
+              },
+            },
+            {
+              header: "Status",
+              accessor: "status",
+              render: (row) => row.status_data?.title,
+            },
+            {
+              header: "Assignee",
+              accessor: "assignee_data",
+              render: (row) => row.assignee_data?.name,
+            },
+            {
+              header: "Actions",
+              accessor: "status",
+              render: (row) => (
+                <Menu>
+                  <Menu.Target>
+                    <ActionIcon variant={"transparent"}>
+                      <IconDots />
+                    </ActionIcon>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item
+                      onClick={() => {
+                        setSelectedTask(row);
+                        handlersUpdateTaskModal.open();
+                      }}
+                    >
+                      Edit Task
+                    </Menu.Item>
+                  </Menu.Dropdown>
+                  <Modal
+                    opened={openedUpdateTaskModal}
+                    onClose={handlersUpdateTaskModal.close}
+                  >
+                    <TaskForm
+                      initialData={selectedTask ?? undefined}
+                      onSave={async (values) => {
+                        return updateTask({
+                          id: selectedTask!.id,
+                          data: values,
+                        }).then(() => {
+                          handlersUpdateTaskModal.close();
+                          refetchTasks();
+                        });
+                      }}
+                      onCancel={function (): void {
+                        handlersUpdateTaskModal.close();
+                      }}
+                    />
+                  </Modal>
+                </Menu>
+              ),
+            },
+          ]}
+          data={paginatedTasks?.results || []}
+          paginated
+          paginationProps={{
+            pageSize: page_size,
+            currentPage: page_no,
+            totalRecords: paginatedTasks?.count || 0,
+            onPageChange: (page: number) => {
+              navigate({ search: { ...search, page_no: page } });
+            },
+          }}
+        />
+      )}
     </Flex>
   );
 }

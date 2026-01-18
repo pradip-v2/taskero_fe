@@ -1,22 +1,32 @@
-import { useS3PresignedUrlCreate, type MessageAttachmentRequest } from "@/api";
+import {
+  useS3PresignedUrlCreate,
+  type MessageAttachmentRequest as MessageAttachmentRequestRequest,
+} from "@/api";
 import { useConversationSocket } from "@/websockets";
-import { Button } from "@mantine/core";
+import { Button, Paper } from "@mantine/core";
 import { createFileRoute } from "@tanstack/react-router";
 import { Dropzone } from "@mantine/dropzone";
 import { useState } from "react";
 
-export const Route = createFileRoute("/test")({
+export const Route = createFileRoute("/_authenticated/app/test-chatting")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { messages, sendMessage, isLoadingMore, loadMore } =
-    useConversationSocket({
-      conversationId: 1,
-    });
+  const {
+    messages,
+    sendMessage,
+    isLoadingMore,
+    loadMore,
+    addReaction,
+    removeReaction,
+    deleteMessage,
+  } = useConversationSocket({
+    conversationId: 1,
+  });
   const { mutateAsync: createS3PreSignedUrl } = useS3PresignedUrlCreate();
   const [fileUploaded, setFileUploaded] =
-    useState<MessageAttachmentRequest | null>(null);
+    useState<MessageAttachmentRequestRequest | null>(null);
 
   return (
     <div>
@@ -56,26 +66,37 @@ function RouteComponent() {
                 file_url: res.file_url,
                 key: res.key,
               });
-              console.log("File uploaded to S3", {
-                file_url: res.file_url,
-                key: res.key,
-              });
             });
           });
-
-          console.log("File uploaded successfully", fileUploaded);
         }}
         style={{ marginTop: 20, marginBottom: 20, minHeight: 150 }}
       >
         <div>Drag files here or click to upload</div>
       </Dropzone>
-      <pre>
+      {messages.map((_, inx) => (
+        <Paper key={messages[inx].id} withBorder mb={10} p={10}>
+          <pre>
+            {messages[inx].id} {messages[inx].content}
+          </pre>
+          <pre>{JSON.stringify(messages[inx]?.reactions, null, 2)}</pre>
+          <Button onClick={() => addReaction(messages[inx].id, "👍")}>
+            Add Reaction
+          </Button>
+          <Button onClick={() => removeReaction(messages[inx].id, "👍")}>
+            Remove Reaction
+          </Button>
+          <Button onClick={() => deleteMessage(messages[inx].id)}>
+            Delete Message
+          </Button>
+        </Paper>
+      ))}
+      {/* <pre>
         {JSON.stringify(
           messages.map((_, inx) => messages[messages.length - inx - 1]),
           null,
           2
         )}
-      </pre>
+      </pre> */}
     </div>
   );
 }

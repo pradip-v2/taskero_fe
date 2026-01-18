@@ -11,10 +11,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TestRouteImport } from './routes/test'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthLayoutRouteImport } from './routes/auth/_layout'
 import { Route as AuthLayoutLoginRouteImport } from './routes/auth/_layout/login'
+import { Route as AuthenticatedAppTestChattingRouteImport } from './routes/_authenticated/app/test-chatting'
 import { Route as AuthenticatedAppLayoutRouteImport } from './routes/_authenticated/app/_layout'
 import { Route as AuthenticatedAppLayoutIndexRouteImport } from './routes/_authenticated/app/_layout/index'
 import { Route as AuthenticatedAppLayoutProjectsRouteImport } from './routes/_authenticated/app/_layout/projects'
@@ -48,11 +48,6 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TestRoute = TestRouteImport.update({
-  id: '/test',
-  path: '/test',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -72,6 +67,12 @@ const AuthLayoutLoginRoute = AuthLayoutLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthLayoutRoute,
 } as any)
+const AuthenticatedAppTestChattingRoute =
+  AuthenticatedAppTestChattingRouteImport.update({
+    id: '/test-chatting',
+    path: '/test-chatting',
+    getParentRoute: () => AuthenticatedAppRoute,
+  } as any)
 const AuthenticatedAppLayoutRoute = AuthenticatedAppLayoutRouteImport.update({
   id: '/_layout',
   getParentRoute: () => AuthenticatedAppRoute,
@@ -178,9 +179,9 @@ const AuthenticatedAppLayoutSettingsLayoutMetaLayoutTaskStatusesRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
   '/auth': typeof AuthLayoutRouteWithChildren
   '/app': typeof AuthenticatedAppLayoutRouteWithChildren
+  '/app/test-chatting': typeof AuthenticatedAppTestChattingRoute
   '/auth/login': typeof AuthLayoutLoginRoute
   '/app/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
   '/app/projects': typeof AuthenticatedAppLayoutProjectsRoute
@@ -199,9 +200,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
   '/auth': typeof AuthLayoutRouteWithChildren
   '/app': typeof AuthenticatedAppLayoutIndexRoute
+  '/app/test-chatting': typeof AuthenticatedAppTestChattingRoute
   '/auth/login': typeof AuthLayoutLoginRoute
   '/app/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
   '/app/projects': typeof AuthenticatedAppLayoutProjectsRoute
@@ -218,11 +219,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/test': typeof TestRoute
   '/auth': typeof AuthRouteWithChildren
   '/auth/_layout': typeof AuthLayoutRouteWithChildren
   '/_authenticated/app': typeof AuthenticatedAppRouteWithChildren
   '/_authenticated/app/_layout': typeof AuthenticatedAppLayoutRouteWithChildren
+  '/_authenticated/app/test-chatting': typeof AuthenticatedAppTestChattingRoute
   '/auth/_layout/login': typeof AuthLayoutLoginRoute
   '/_authenticated/app/_layout/dashboard': typeof AuthenticatedAppLayoutDashboardRoute
   '/_authenticated/app/_layout/projects': typeof AuthenticatedAppLayoutProjectsRoute
@@ -246,9 +247,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/test'
     | '/auth'
     | '/app'
+    | '/app/test-chatting'
     | '/auth/login'
     | '/app/dashboard'
     | '/app/projects'
@@ -267,9 +268,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/test'
     | '/auth'
     | '/app'
+    | '/app/test-chatting'
     | '/auth/login'
     | '/app/dashboard'
     | '/app/projects'
@@ -285,11 +286,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/test'
     | '/auth'
     | '/auth/_layout'
     | '/_authenticated/app'
     | '/_authenticated/app/_layout'
+    | '/_authenticated/app/test-chatting'
     | '/auth/_layout/login'
     | '/_authenticated/app/_layout/dashboard'
     | '/_authenticated/app/_layout/projects'
@@ -312,7 +313,6 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  TestRoute: typeof TestRoute
   AuthRoute: typeof AuthRouteWithChildren
   AuthenticatedAppRoute: typeof AuthenticatedAppRouteWithChildren
 }
@@ -324,13 +324,6 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/test': {
-      id: '/test'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof TestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -360,6 +353,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLayoutLoginRouteImport
       parentRoute: typeof AuthLayoutRoute
+    }
+    '/_authenticated/app/test-chatting': {
+      id: '/_authenticated/app/test-chatting'
+      path: '/test-chatting'
+      fullPath: '/app/test-chatting'
+      preLoaderRoute: typeof AuthenticatedAppTestChattingRouteImport
+      parentRoute: typeof AuthenticatedAppRoute
     }
     '/_authenticated/app/_layout': {
       id: '/_authenticated/app/_layout'
@@ -646,10 +646,12 @@ const AuthenticatedAppLayoutRouteWithChildren =
 
 interface AuthenticatedAppRouteChildren {
   AuthenticatedAppLayoutRoute: typeof AuthenticatedAppLayoutRouteWithChildren
+  AuthenticatedAppTestChattingRoute: typeof AuthenticatedAppTestChattingRoute
 }
 
 const AuthenticatedAppRouteChildren: AuthenticatedAppRouteChildren = {
   AuthenticatedAppLayoutRoute: AuthenticatedAppLayoutRouteWithChildren,
+  AuthenticatedAppTestChattingRoute: AuthenticatedAppTestChattingRoute,
 }
 
 const AuthenticatedAppRouteWithChildren =
@@ -657,7 +659,6 @@ const AuthenticatedAppRouteWithChildren =
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  TestRoute: TestRoute,
   AuthRoute: AuthRouteWithChildren,
   AuthenticatedAppRoute: AuthenticatedAppRouteWithChildren,
 }

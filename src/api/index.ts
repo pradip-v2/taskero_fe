@@ -109,6 +109,7 @@ export type { MessagesListQueryParams, MessagesList200, MessagesListQueryRespons
 export type { MessagesPartialUpdatePathParams, MessagesPartialUpdate200, MessagesPartialUpdateMutationRequest, MessagesPartialUpdateMutationResponse, MessagesPartialUpdateMutation } from "./types/MessagesPartialUpdate.ts";
 export type { MessagesRetrievePathParams, MessagesRetrieve200, MessagesRetrieveQueryResponse, MessagesRetrieveQuery } from "./types/MessagesRetrieve.ts";
 export type { MessagesUpdatePathParams, MessagesUpdate200, MessagesUpdateMutationRequest, MessagesUpdateMutationResponse, MessagesUpdateMutation } from "./types/MessagesUpdate.ts";
+export type { MessageTypeEnumEnum, MessageTypeEnum } from "./types/MessageTypeEnum.ts";
 export type { PaginatedConversationList } from "./types/PaginatedConversationList.ts";
 export type { PaginatedMessageList } from "./types/PaginatedMessageList.ts";
 export type { PaginatedProjectList } from "./types/PaginatedProjectList.ts";
@@ -143,6 +144,7 @@ export type { ProjectsRetrievePathParams, ProjectsRetrieve200, ProjectsRetrieveQ
 export type { ProjectsTasksListPathParams, ProjectsTasksListQueryParams, ProjectsTasksList200, ProjectsTasksListQueryResponse, ProjectsTasksListQuery } from "./types/ProjectsTasksList.ts";
 export type { ProjectsUpdatePathParams, ProjectsUpdate200, ProjectsUpdateMutationRequest, ProjectsUpdateMutationResponse, ProjectsUpdateMutation } from "./types/ProjectsUpdate.ts";
 export type { ProjectWiseMember } from "./types/ProjectWiseMember.ts";
+export type { ReplyQuote } from "./types/ReplyQuote.ts";
 export type { Response } from "./types/Response.ts";
 export type { RestAuthDetail } from "./types/RestAuthDetail.ts";
 export type { S3PresignedUrlCreate200, S3PresignedUrlCreate400, S3PresignedUrlCreateMutationRequest, S3PresignedUrlCreateMutationResponse, S3PresignedUrlCreateMutation } from "./types/S3PresignedUrlCreate.ts";
@@ -261,5 +263,6 @@ export { usersSearchRetrieveQueryKey, usersSearchRetrieve, usersSearchRetrieveQu
 export { usersSearchRetrieveSuspenseQueryKey, usersSearchRetrieveSuspense, usersSearchRetrieveSuspenseQueryOptions, useUsersSearchRetrieveSuspense } from "./hooks/usersHooks/useUsersSearchRetrieveSuspense.ts";
 export { usersUpdateMutationKey, usersUpdate, useUsersUpdate } from "./hooks/usersHooks/useUsersUpdate.ts";
 export { conversationsListQueryParamsTypeEnum } from "./types/ConversationsList.ts";
+export { messageTypeEnumEnum } from "./types/MessageTypeEnum.ts";
 export { schemaRetrieveQueryParamsFormatEnum, schemaRetrieveQueryParamsLangEnum } from "./types/SchemaRetrieve.ts";
 export { typeEnumEnum } from "./types/TypeEnum.ts";

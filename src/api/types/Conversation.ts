@@ -3,28 +3,20 @@
 * Do not edit manually.
 */
 
+import type { Message } from "./Message.ts";
 import type { TypeEnum } from "./TypeEnum.ts";
-import type { UserMinDetails } from "./UserMinDetails.ts";
 import type { UserRelationShort } from "./UserRelationShort.ts";
 
-/**
- * @description Base serializer for all models.
-*/
 export type Conversation = {
     /**
      * @type integer
     */
     readonly id: number;
-    readonly created_by_data: UserMinDetails | null;
-    readonly updated_by_data: UserMinDetails | null;
     /**
      * @type array
     */
     readonly participants_data: UserRelationShort[];
-    /**
-     * @type string
-    */
-    readonly last_message: string;
+    readonly last_message: Message;
     /**
      * @type string, date-time
     */

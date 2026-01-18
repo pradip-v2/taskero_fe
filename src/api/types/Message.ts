@@ -5,19 +5,15 @@
 
 import type { MessageAttachment } from "./MessageAttachment.ts";
 import type { MessageAttachmentRequest } from "./MessageAttachmentRequest.ts";
-import type { UserMinDetails } from "./UserMinDetails.ts";
+import type { MessageTypeEnum } from "./MessageTypeEnum.ts";
+import type { ReplyQuote } from "./ReplyQuote.ts";
 import type { UserRelationShort } from "./UserRelationShort.ts";
 
-/**
- * @description Base serializer for all models.
-*/
 export type Message = {
     /**
      * @type integer
     */
     readonly id: number;
-    readonly created_by_data: UserMinDetails | null;
-    readonly updated_by_data: UserMinDetails | null;
     readonly sender_data: UserRelationShort;
     /**
      * @type array
@@ -27,6 +23,7 @@ export type Message = {
      * @type array
     */
     readonly attachments_data: MessageAttachment[];
+    readonly reply_quote: ReplyQuote;
     /**
      * @type string, date-time
     */
@@ -39,10 +36,25 @@ export type Message = {
      * @type string
     */
     content: string;
+    reply_to?: any;
+    /**
+     * @description * `text` - Text\n* `audio` - Audio\n* `file` - File
+     * @type string | undefined
+    */
+    message_type?: MessageTypeEnum;
     /**
      * @type boolean | undefined
     */
     is_read?: boolean;
+    /**
+     * @type boolean | undefined
+    */
+    is_edited?: boolean;
+    /**
+     * @type boolean | undefined
+    */
+    is_starred?: boolean;
+    reactions?: any;
     /**
      * @type integer
     */
@@ -58,5 +70,9 @@ export type Message = {
     /**
      * @type integer
     */
-    sender: number;
+    sender?: number | null;
+    /**
+     * @type array | undefined
+    */
+    mentioned_users?: number[];
 };

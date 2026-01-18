@@ -7,7 +7,8 @@
     "build": "vite build && tsc",
     "serve": "vite preview",
     "test": "vitest run",
-    "generate": "kubb generate"
+    "generate": "kubb generate",
+    "prepare": "husky"
   },
   "dependencies": {
     "@kubb/cli": "^3.1.0",
@@ -35,6 +36,7 @@
     "axios": "^1.12.2",
     "dayjs": "^1.11.18",
     "formik": "^2.4.6",
+    "husky": "^9.1.7",
     "lucide-react": "^0.544.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

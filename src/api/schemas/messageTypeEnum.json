@@ -1,0 +1,1 @@
+{"enum":["text","audio","file"],"type":"string","description":"* `text` - Text\n* `audio` - Audio\n* `file` - File","x-readme-ref-name":"MessageTypeEnum"}

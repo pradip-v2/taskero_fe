@@ -16,7 +16,7 @@ export type ConversationsPartialUpdatePathParams = {
 
 export type ConversationsPartialUpdate200 = Conversation;
 
-export type ConversationsPartialUpdateMutationRequest = Omit<NonNullable<PatchedConversation>, "id" | "created_by_data" | "updated_by_data" | "participants_data" | "last_message" | "created_at" | "updated_at">;
+export type ConversationsPartialUpdateMutationRequest = Omit<NonNullable<PatchedConversation>, "id" | "participants_data" | "last_message" | "created_at" | "updated_at">;
 
 export type ConversationsPartialUpdateMutationResponse = ConversationsPartialUpdate200;
 

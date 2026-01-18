@@ -7,7 +7,7 @@ import type { Conversation } from "./Conversation.ts";
 
 export type ConversationsCreate201 = Conversation;
 
-export type ConversationsCreateMutationRequest = Omit<NonNullable<Conversation>, "id" | "created_by_data" | "updated_by_data" | "participants_data" | "last_message" | "created_at" | "updated_at">;
+export type ConversationsCreateMutationRequest = Omit<NonNullable<Conversation>, "id" | "participants_data" | "last_message" | "created_at" | "updated_at">;
 
 export type ConversationsCreateMutationResponse = ConversationsCreate201;
 

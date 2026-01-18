@@ -16,7 +16,7 @@ export type MessagesPartialUpdatePathParams = {
 
 export type MessagesPartialUpdate200 = Omit<NonNullable<Message>, "attachments">;
 
-export type MessagesPartialUpdateMutationRequest = Omit<NonNullable<PatchedMessage>, "id" | "created_by_data" | "updated_by_data" | "sender_data" | "attachments_data" | "created_at" | "updated_at">;
+export type MessagesPartialUpdateMutationRequest = Omit<NonNullable<PatchedMessage>, "id" | "sender_data" | "attachments_data" | "reply_quote" | "created_at" | "updated_at">;
 
 export type MessagesPartialUpdateMutationResponse = MessagesPartialUpdate200;
 

@@ -11,12 +11,12 @@ export type PatchedUser = {
     */
     name?: string;
     /**
-     * @type string | undefined, uri
-    */
-    readonly url?: string;
-    /**
      * @maxLength 254
      * @type string | undefined, email
     */
     email?: string;
+    /**
+     * @type integer | undefined
+    */
+    readonly id?: number;
 };

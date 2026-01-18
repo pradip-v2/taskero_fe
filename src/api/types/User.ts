@@ -11,12 +11,12 @@ export type User = {
     */
     name?: string;
     /**
-     * @type string, uri
-    */
-    readonly url: string;
-    /**
      * @maxLength 254
      * @type string, email
     */
     email: string;
+    /**
+     * @type integer
+    */
+    readonly id: number;
 };

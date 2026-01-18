@@ -7,7 +7,7 @@ import type { User } from "./User.ts";
 
 export type UsersCreate201 = User;
 
-export type UsersCreateMutationRequest = Omit<NonNullable<User>, "url">;
+export type UsersCreateMutationRequest = Omit<NonNullable<User>, "id">;
 
 export type UsersCreateMutationResponse = UsersCreate201;
 

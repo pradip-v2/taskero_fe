@@ -15,7 +15,7 @@ export type UsersUpdatePathParams = {
 
 export type UsersUpdate200 = User;
 
-export type UsersUpdateMutationRequest = Omit<NonNullable<User>, "url">;
+export type UsersUpdateMutationRequest = Omit<NonNullable<User>, "id">;
 
 export type UsersUpdateMutationResponse = UsersUpdate200;
 

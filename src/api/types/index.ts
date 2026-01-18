@@ -1,6 +1,7 @@
 export type { AuthLoginCreate200, AuthLoginCreateMutationRequest, AuthLoginCreateMutationResponse, AuthLoginCreateMutation } from "./AuthLoginCreate.ts";
 export type { AuthLogoutCreate200, AuthLogoutCreateMutationResponse, AuthLogoutCreateMutation } from "./AuthLogoutCreate.ts";
 export type { AuthPasswordChangeCreate200, AuthPasswordChangeCreateMutationRequest, AuthPasswordChangeCreateMutationResponse, AuthPasswordChangeCreateMutation } from "./AuthPasswordChangeCreate.ts";
+export type { AuthPasswordResetConfirmCreate2PathParams, AuthPasswordResetConfirmCreate2200, AuthPasswordResetConfirmCreate2MutationRequest, AuthPasswordResetConfirmCreate2MutationResponse, AuthPasswordResetConfirmCreate2Mutation } from "./AuthPasswordResetConfirmCreate2.ts";
 export type { AuthPasswordResetConfirmCreate200, AuthPasswordResetConfirmCreateMutationRequest, AuthPasswordResetConfirmCreateMutationResponse, AuthPasswordResetConfirmCreateMutation } from "./AuthPasswordResetConfirmCreate.ts";
 export type { AuthPasswordResetCreate200, AuthPasswordResetCreateMutationRequest, AuthPasswordResetCreateMutationResponse, AuthPasswordResetCreateMutation } from "./AuthPasswordResetCreate.ts";
 export type { AuthTokenRefreshCreate200, AuthTokenRefreshCreateMutationRequest, AuthTokenRefreshCreateMutationResponse, AuthTokenRefreshCreateMutation } from "./AuthTokenRefreshCreate.ts";

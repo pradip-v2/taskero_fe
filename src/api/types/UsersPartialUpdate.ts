@@ -16,7 +16,7 @@ export type UsersPartialUpdatePathParams = {
 
 export type UsersPartialUpdate200 = User;
 
-export type UsersPartialUpdateMutationRequest = Omit<NonNullable<PatchedUser>, "url">;
+export type UsersPartialUpdateMutationRequest = Omit<NonNullable<PatchedUser>, "id">;
 
 export type UsersPartialUpdateMutationResponse = UsersPartialUpdate200;
 

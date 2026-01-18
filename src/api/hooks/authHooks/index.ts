@@ -1,6 +1,7 @@
 export type { AuthLoginCreateMutationKey } from "./useAuthLoginCreate.ts";
 export type { AuthLogoutCreateMutationKey } from "./useAuthLogoutCreate.ts";
 export type { AuthPasswordChangeCreateMutationKey } from "./useAuthPasswordChangeCreate.ts";
+export type { AuthPasswordResetConfirmCreate2MutationKey } from "./useAuthPasswordResetConfirmCreate2.ts";
 export type { AuthPasswordResetConfirmCreateMutationKey } from "./useAuthPasswordResetConfirmCreate.ts";
 export type { AuthPasswordResetCreateMutationKey } from "./useAuthPasswordResetCreate.ts";
 export type { AuthTokenRefreshCreateMutationKey } from "./useAuthTokenRefreshCreate.ts";
@@ -12,6 +13,7 @@ export type { AuthUserUpdateMutationKey } from "./useAuthUserUpdate.ts";
 export { authLoginCreateMutationKey, authLoginCreate, useAuthLoginCreate } from "./useAuthLoginCreate.ts";
 export { authLogoutCreateMutationKey, authLogoutCreate, useAuthLogoutCreate } from "./useAuthLogoutCreate.ts";
 export { authPasswordChangeCreateMutationKey, authPasswordChangeCreate, useAuthPasswordChangeCreate } from "./useAuthPasswordChangeCreate.ts";
+export { authPasswordResetConfirmCreate2MutationKey, authPasswordResetConfirmCreate2, useAuthPasswordResetConfirmCreate2 } from "./useAuthPasswordResetConfirmCreate2.ts";
 export { authPasswordResetConfirmCreateMutationKey, authPasswordResetConfirmCreate, useAuthPasswordResetConfirmCreate } from "./useAuthPasswordResetConfirmCreate.ts";
 export { authPasswordResetCreateMutationKey, authPasswordResetCreate, useAuthPasswordResetCreate } from "./useAuthPasswordResetCreate.ts";
 export { authTokenRefreshCreateMutationKey, authTokenRefreshCreate, useAuthTokenRefreshCreate } from "./useAuthTokenRefreshCreate.ts";

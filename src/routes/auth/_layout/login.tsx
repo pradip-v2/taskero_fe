@@ -1,16 +1,25 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { TextInput, PasswordInput, Button, Text, Box, Title, Stack, Alert } from '@mantine/core';
-import { useAuth } from '../../../auth';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import { useState } from 'react';
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import {
+  TextInput,
+  PasswordInput,
+  Button,
+  Text,
+  Box,
+  Title,
+  Stack,
+  Alert,
+} from "@mantine/core";
+import { useAuth } from "../../../auth";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { useState } from "react";
 
 type CustomLoginRequest = {
   email: string;
   password: string;
 };
 
-export const Route = createFileRoute('/auth/_layout/login')({
+export const Route = createFileRoute("/auth/_layout/login")({
   component: RouteComponent,
 });
 
@@ -22,7 +31,7 @@ function RouteComponent() {
   // formik onsubmit
   const onFormSubmit = async (
     values: CustomLoginRequest,
-    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
   ) => {
     setError(null);
     try {
@@ -31,9 +40,9 @@ function RouteComponent() {
         password: values.password,
       });
 
-      await navigate({ to: '/' });
+      await navigate({ to: "/app/dashboard" });
     } catch (err) {
-      setError('Invalid email or password. Please try again.');
+      setError("Invalid email or password. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -42,17 +51,18 @@ function RouteComponent() {
   // formik validation schema
   const validationSchema = Yup.object().shape({
     email: Yup.string()
-      .email('Invalid email address')
-      .matches(/.*@.+\..+/, 'Email address must be a valid email')
-      .required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
+      .email("Invalid email address")
+      .matches(/.*@.+\..+/, "Email address must be a valid email")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   return (
     <Stack gap="md" maw={400} mx="auto" w="100%" p="md">
       <Box ta="center" mb="lg">
-        <Title order={2} mb="xs">Welcome Back</Title>
+        <Title order={2} mb="xs">
+          Welcome Back
+        </Title>
         <Text c="dimmed">Enter your credentials to access your account</Text>
       </Box>
 
@@ -66,8 +76,8 @@ function RouteComponent() {
       {/* formik form */}
       <Formik
         initialValues={{
-          email: '',
-          password: '',
+          email: "",
+          password: "",
         }}
         validationSchema={validationSchema}
         onSubmit={onFormSubmit}
@@ -85,7 +95,11 @@ function RouteComponent() {
                   error={touched.email && errors.email}
                   mb="sm"
                 />
-                <ErrorMessage name="email" component="div" className="error-message" />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
               </div>
 
               <div>
@@ -98,15 +112,14 @@ function RouteComponent() {
                   error={touched.password && errors.password}
                   mb="sm"
                 />
-                <ErrorMessage name="password" component="div" className="error-message" />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error-message"
+                />
               </div>
 
-              <Button 
-                type="submit" 
-                loading={isSubmitting}
-                fullWidth
-                size="md"
-              >
+              <Button type="submit" loading={isSubmitting} fullWidth size="md">
                 Sign In
               </Button>
             </Stack>

@@ -4,16 +4,20 @@ import {
   Outlet,
   useLocation,
 } from "@tanstack/react-router";
-import { useDisclosure } from "@mantine/hooks";
+import { useDisclosure, useLocalStorage } from "@mantine/hooks";
 import {
   AppShell,
+  Avatar,
   Burger,
-  Group,
+  Flex,
+  Menu,
   NavLink,
   ScrollArea,
   Text,
 } from "@mantine/core";
 import { useMemo } from "react";
+import { LOCAL_STORAGE_USER_KEY } from "@/auth";
+import type { JWT } from "@/api";
 
 export const Route = createFileRoute("/_authenticated/app/_layout")({
   component: RouteComponent,
@@ -29,6 +33,7 @@ const SIDEBAR_MENU_OPTIONS = [
 ];
 
 function RouteComponent() {
+  const navigate = Route.useNavigate();
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const location = useLocation();
@@ -38,6 +43,11 @@ function RouteComponent() {
         ?.to || "/app/dashboard"
     );
   }, [location]);
+
+  const [user] = useLocalStorage<JWT | null>({
+    key: LOCAL_STORAGE_USER_KEY,
+    defaultValue: null,
+  });
 
   return (
     <AppShell
@@ -50,21 +60,54 @@ function RouteComponent() {
       }}
     >
       <AppShell.Header>
-        <Group h="100%" px="md">
-          <Burger
-            opened={mobileOpened}
-            onClick={toggleMobile}
-            hiddenFrom="sm"
-            size="sm"
-          />
-          <Burger
-            opened={desktopOpened}
-            onClick={toggleDesktop}
-            visibleFrom="sm"
-            size="sm"
-          />
-          The burger icon is always visible
-        </Group>
+        <Flex h="100%" px="md" justify={"space-between"} align={"center"}>
+          <Flex>
+            <Burger
+              opened={mobileOpened}
+              onClick={toggleMobile}
+              hiddenFrom="sm"
+              size="sm"
+            />
+            <Burger
+              opened={desktopOpened}
+              onClick={toggleDesktop}
+              visibleFrom="sm"
+              size="sm"
+            />
+            The burger icon is always visible
+          </Flex>
+          <Flex>
+            <Menu>
+              <Menu.Target>
+                <Flex gap={"xs"} style={{ cursor: "pointer" }} align="center">
+                  <Flex>
+                    <Avatar radius="xl" size={30} children={"PB"} />
+                  </Flex>
+                  <Flex>{user?.user?.email}</Flex>
+                </Flex>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item
+                  onClick={() => {
+                    navigate({ to: "/app/settings/profile" });
+                  }}
+                >
+                  Profile
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => {
+                    localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+                    setTimeout(() => {
+                      navigate({ to: "/auth/login" });
+                    }, 0);
+                  }}
+                >
+                  Logout
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          </Flex>
+        </Flex>
       </AppShell.Header>
       <AppShell.Navbar>
         <AppShell.Section p="md">Navbar header</AppShell.Section>

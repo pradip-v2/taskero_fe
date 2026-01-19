@@ -4,7 +4,7 @@ import { Flex, LoadingOverlay, Tabs, Title, Text } from "@mantine/core";
 import { createFileRoute, Outlet, useLocation } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
-  "/_authenticated/app/_layout/project/$projectId/_layout"
+  "/_authenticated/app/_layout/project/$projectId/_layout",
 )({
   component: RouteComponent,
 });
@@ -12,6 +12,7 @@ export const Route = createFileRoute(
 const PROJECT_TABS = [
   { label: "Summary", value: "summary", to: "/app/project/$projectId/summary" },
   { label: "Tasks", value: "tasks", to: "/app/project/$projectId/tasks" },
+  { label: "Kanban", value: "kanban", to: "/app/project/$projectId/kanban" },
   { label: "Members", value: "members", to: "/app/project/$projectId/members" },
 ];
 

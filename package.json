@@ -11,6 +11,9 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
     "@kubb/cli": "^3.1.0",
     "@kubb/core": "^3.1.0",
     "@kubb/plugin-oas": "^3.1.0",

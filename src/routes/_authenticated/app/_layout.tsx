@@ -13,6 +13,7 @@ import {
   ScrollArea,
   Text,
 } from "@mantine/core";
+import { useMemo } from "react";
 
 export const Route = createFileRoute("/_authenticated/app/_layout")({
   component: RouteComponent,
@@ -31,9 +32,12 @@ function RouteComponent() {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
   const location = useLocation();
-  const currentTab =
-    SIDEBAR_MENU_OPTIONS.find((tab) => location.pathname.includes(tab.to))
-      ?.to || "/app/dashboard";
+  const currentTab = useMemo(() => {
+    return (
+      SIDEBAR_MENU_OPTIONS.find((tab) => location.pathname.includes(tab.to))
+        ?.to || "/app/dashboard"
+    );
+  }, [location]);
 
   return (
     <AppShell

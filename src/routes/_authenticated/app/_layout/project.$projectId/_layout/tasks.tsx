@@ -25,10 +25,10 @@ import { useState } from "react";
 import CustomNestedTable from "@/components/shared/custom-table/CustomNestedTable";
 
 export const Route = createFileRoute(
-  "/_authenticated/app/_layout/project/$projectId/_layout/tasks"
+  "/_authenticated/app/_layout/project/$projectId/_layout/tasks",
 )({
   validateSearch: (
-    search: any
+    search: any,
   ): PaginationProps & {
     view: "plain" | "nested";
   } => {
@@ -106,7 +106,7 @@ function RouteComponent() {
       query: {
         queryKey: ["project-tasks", projectId, search, view],
       },
-    }
+    },
   );
 
   const { mutateAsync: createTask } = useTasksCreate();

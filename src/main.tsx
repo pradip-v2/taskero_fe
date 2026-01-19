@@ -12,13 +12,17 @@ import {
   Title,
 } from "@mantine/core";
 import { theme } from "./theme";
-import "@mantine/core/styles.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ResourceNotFound from "./components/shared/ResourceNotFound";
-import { AlertModalContext, type AlertType } from "./context/AlertModalProvider";
+import {
+  AlertModalContext,
+  type AlertType,
+} from "./context/AlertModalProvider";
 import { useDisclosure } from "@mantine/hooks";
 import { Notifications } from "@mantine/notifications";
+import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "@mantine/dates/styles.css";
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
@@ -74,8 +78,7 @@ function InnerApp() {
             w={"100%"}
             py={"md"}
           >
-            <ThemeIcon size={65} radius={"xl"}>
-            </ThemeIcon>
+            <ThemeIcon size={65} radius={"xl"}></ThemeIcon>
             <Title order={5}>{alert?.message}</Title>
             <Button onClick={handlers.close} w={274} h={41}>
               Close
@@ -94,7 +97,7 @@ function App() {
       <AuthProvider>
         <MantineProvider theme={theme}>
           <Notifications />
-            <InnerApp />
+          <InnerApp />
         </MantineProvider>
       </AuthProvider>
     </QueryClientProvider>
@@ -108,6 +111,6 @@ if (!rootElement.innerHTML) {
   root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }

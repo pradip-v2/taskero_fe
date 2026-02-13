@@ -7,16 +7,16 @@
 /**
  * @description Base serializer for all models.
 */
-export type TaskStatus = {
+export type PatchedTaskStatus = {
     /**
-     * @type integer
+     * @type integer | undefined
     */
-    readonly id: number;
+    readonly id?: number;
     /**
      * @maxLength 128
-     * @type string
+     * @type string | undefined
     */
-    title: string;
+    title?: string;
     /**
      * @type integer
     */

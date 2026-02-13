@@ -6,7 +6,7 @@ To run this application:
 
 ```bash
 yarn install
-yarn run start
+yarn dev --mode localtest # according to the environment required
 ```
 
 # Building For Production

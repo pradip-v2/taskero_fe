@@ -3,22 +3,19 @@
 * Do not edit manually.
 */
 
+import type { TaskStatus } from "./TaskStatus.ts";
 
 /**
  * @description Base serializer for all models.
 */
-export type TaskStatus = {
+export type TaskDetailsShort = {
     /**
      * @type integer
     */
     readonly id: number;
     /**
-     * @maxLength 128
      * @type string
     */
     title: string;
-    /**
-     * @type integer
-    */
-    parent_status?: number | null;
+    readonly status_data: TaskStatus;
 };

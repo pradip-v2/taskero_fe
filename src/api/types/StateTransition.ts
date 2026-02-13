@@ -7,7 +7,7 @@
 /**
  * @description Base serializer for all models.
 */
-export type TaskStatus = {
+export type StateTransition = {
     /**
      * @type integer
     */
@@ -18,7 +18,7 @@ export type TaskStatus = {
     */
     title: string;
     /**
-     * @type integer
+     * @type array
     */
-    parent_status?: number | null;
+    children: number[];
 };

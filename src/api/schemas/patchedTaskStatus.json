@@ -1,0 +1,1 @@
+{"type":"object","description":"Base serializer for all models.","properties":{"id":{"type":"integer","readOnly":true},"title":{"type":"string","maxLength":128},"parent_status":{"type":"integer","nullable":true}},"x-readme-ref-name":"PatchedTaskStatus"}

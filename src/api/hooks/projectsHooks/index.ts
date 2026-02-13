@@ -7,8 +7,12 @@ export type { ProjectsProjectWiseProjectMembersListQueryKey } from "./useProject
 export type { ProjectsProjectWiseProjectMembersListSuspenseQueryKey } from "./useProjectsProjectWiseProjectMembersListSuspense.ts";
 export type { ProjectsRetrieveQueryKey } from "./useProjectsRetrieve.ts";
 export type { ProjectsRetrieveSuspenseQueryKey } from "./useProjectsRetrieveSuspense.ts";
+export type { ProjectsSearchRetrieveQueryKey } from "./useProjectsSearchRetrieve.ts";
+export type { ProjectsSearchRetrieveSuspenseQueryKey } from "./useProjectsSearchRetrieveSuspense.ts";
 export type { ProjectsTasksListQueryKey } from "./useProjectsTasksList.ts";
 export type { ProjectsTasksListSuspenseQueryKey } from "./useProjectsTasksListSuspense.ts";
+export type { ProjectsTasksSearchRetrieveQueryKey } from "./useProjectsTasksSearchRetrieve.ts";
+export type { ProjectsTasksSearchRetrieveSuspenseQueryKey } from "./useProjectsTasksSearchRetrieveSuspense.ts";
 export type { ProjectsUpdateMutationKey } from "./useProjectsUpdate.ts";
 export { projectsCreateMutationKey, projectsCreate, useProjectsCreate } from "./useProjectsCreate.ts";
 export { projectsDestroyMutationKey, projectsDestroy, useProjectsDestroy } from "./useProjectsDestroy.ts";
@@ -19,6 +23,10 @@ export { projectsProjectWiseProjectMembersListQueryKey, projectsProjectWiseProje
 export { projectsProjectWiseProjectMembersListSuspenseQueryKey, projectsProjectWiseProjectMembersListSuspense, projectsProjectWiseProjectMembersListSuspenseQueryOptions, useProjectsProjectWiseProjectMembersListSuspense } from "./useProjectsProjectWiseProjectMembersListSuspense.ts";
 export { projectsRetrieveQueryKey, projectsRetrieve, projectsRetrieveQueryOptions, useProjectsRetrieve } from "./useProjectsRetrieve.ts";
 export { projectsRetrieveSuspenseQueryKey, projectsRetrieveSuspense, projectsRetrieveSuspenseQueryOptions, useProjectsRetrieveSuspense } from "./useProjectsRetrieveSuspense.ts";
+export { projectsSearchRetrieveQueryKey, projectsSearchRetrieve, projectsSearchRetrieveQueryOptions, useProjectsSearchRetrieve } from "./useProjectsSearchRetrieve.ts";
+export { projectsSearchRetrieveSuspenseQueryKey, projectsSearchRetrieveSuspense, projectsSearchRetrieveSuspenseQueryOptions, useProjectsSearchRetrieveSuspense } from "./useProjectsSearchRetrieveSuspense.ts";
 export { projectsTasksListQueryKey, projectsTasksList, projectsTasksListQueryOptions, useProjectsTasksList } from "./useProjectsTasksList.ts";
 export { projectsTasksListSuspenseQueryKey, projectsTasksListSuspense, projectsTasksListSuspenseQueryOptions, useProjectsTasksListSuspense } from "./useProjectsTasksListSuspense.ts";
+export { projectsTasksSearchRetrieveQueryKey, projectsTasksSearchRetrieve, projectsTasksSearchRetrieveQueryOptions, useProjectsTasksSearchRetrieve } from "./useProjectsTasksSearchRetrieve.ts";
+export { projectsTasksSearchRetrieveSuspenseQueryKey, projectsTasksSearchRetrieveSuspense, projectsTasksSearchRetrieveSuspenseQueryOptions, useProjectsTasksSearchRetrieveSuspense } from "./useProjectsTasksSearchRetrieveSuspense.ts";
 export { projectsUpdateMutationKey, projectsUpdate, useProjectsUpdate } from "./useProjectsUpdate.ts";
